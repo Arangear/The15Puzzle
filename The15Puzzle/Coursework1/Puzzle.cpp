@@ -30,7 +30,7 @@ int & Puzzle::operator()(const int x, const int y)
 
 std::ostream & operator<<(std::ostream & oStream, const Puzzle & puzzle)
 {
-	for (int i = 0; i < puzzle.size; i++)
+	for (int i = 0; i < puzzle.size - 1; i++)
 	{
 		for (int j = 0; j < puzzle.size; j++)
 		{
@@ -38,6 +38,11 @@ std::ostream & operator<<(std::ostream & oStream, const Puzzle & puzzle)
 		}
 		oStream << "\n";
 	}
+	for (int i = 0; i < puzzle.size - 1; i++)
+	{
+		oStream << puzzle(puzzle.size - 1, i) << " ";
+	}
+	oStream << "\n";
 
 	return oStream;
 }
