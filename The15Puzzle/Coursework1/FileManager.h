@@ -8,6 +8,6 @@
 class FileManager
 {
 public:
-	virtual void OpenStream(std::string filePath) = 0;
+	virtual void OpenStream(const std::string& filePath) = 0;
 	virtual void CloseStream() = 0;
 };
