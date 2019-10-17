@@ -31,17 +31,11 @@ void UI::Display()
 void UI::inputPuzzle(Puzzle& puzzle)
 {
 	std::cout << "Please type in 15 different integer numbers from 1 to 20:\n";
-	for (int i = 0; i < puzzle.GetSize() - 1; i++)
-	{
-		for (int j = 0; j < puzzle.GetSize(); j++)
-		{
-			std::cin >> puzzle(i, j);
-		}
-	}
-	for (int i = 0; i < puzzle.GetSize() - 1; i++)
-	{
-		std::cin >> puzzle(puzzle.GetSize() - 1, i);
-	}
+	
+	std::cin >> puzzle;
+
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void UI::displayOptions()

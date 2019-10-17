@@ -16,8 +16,9 @@ public:
 	const int GetSize() const;
 	const int& operator()(const int x, const int y) const;
 	int& operator()(const int x, const int y);
-	//Display
+	//IO
 	friend std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle);
+	friend std::istream& operator>>(std::istream& iStream, Puzzle& puzzle);
 private:
 	static const int size = 4;
 	int state[size][size] = { {1, 2, 3, 4}, 

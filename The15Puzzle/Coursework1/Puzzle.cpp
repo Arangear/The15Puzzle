@@ -46,3 +46,19 @@ std::ostream & operator<<(std::ostream & oStream, const Puzzle & puzzle)
 
 	return oStream;
 }
+
+std::istream & operator>>(std::istream& iStream, Puzzle& puzzle)
+{
+	for (int i = 0; i < puzzle.GetSize() - 1; i++)
+	{
+		for (int j = 0; j < puzzle.GetSize(); j++)
+		{
+			iStream >> puzzle(i, j);
+		}
+	}
+	for (int i = 0; i < puzzle.GetSize() - 1; i++)
+	{
+		iStream >> puzzle(puzzle.GetSize() - 1, i);
+	}
+	return iStream;
+}
