@@ -1,10 +1,11 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 16.10.2019
+//Last modified: 18.10.2019
 
 #pragma once
 
 #include <iostream>
+#include <unordered_set>
 
 //Class representing a 15-puzzle problem
 class Puzzle
@@ -25,4 +26,6 @@ private:
 							  {5, 6, 7, 8}, 
 							  {9, 10, 11, 12}, 
 							  {13, 14, 15, -1}};
+
+	void ensureValidInput(std::istream& iStream, int& value);
 };

@@ -1,7 +1,7 @@
-#include "FileReader.h"
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 17.10.2019
+//Last modified: 18.10.2019
+#include "FileReader.h"
 
 void FileReader::OpenStream(const std::string& filePath)
 {

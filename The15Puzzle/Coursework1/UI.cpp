@@ -1,3 +1,6 @@
+//Author:        Daniel Cieslowski
+//Date created:  17.10.2019
+//Last modified: 18.10.2019
 #include "UI.h"
 #include <limits>
 
@@ -22,20 +25,15 @@ void UI::Display()
 			break;
 		default:
 			std::cout << "Unrecognised command.\n";
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 }
 
 void UI::inputPuzzle(Puzzle& puzzle)
 {
-	std::cout << "Please type in 15 different integer numbers from 1 to 20:\n";
-	
 	std::cin >> puzzle;
-
-	std::cin.clear();
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void UI::displayOptions()

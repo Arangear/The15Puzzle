@@ -1,7 +1,8 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 16.10.2019
+//Last modified: 18.10.2019
 #include "Puzzle.h"
+#include <limits>
 
 Puzzle::Puzzle()
 {
@@ -53,12 +54,32 @@ std::istream & operator>>(std::istream& iStream, Puzzle& puzzle)
 	{
 		for (int j = 0; j < puzzle.GetSize(); j++)
 		{
-			iStream >> puzzle(i, j);
+			puzzle.ensureValidInput(iStream, puzzle(i, j));
 		}
 	}
 	for (int i = 0; i < puzzle.GetSize() - 1; i++)
 	{
-		iStream >> puzzle(puzzle.GetSize() - 1, i);
+		puzzle.ensureValidInput(iStream, puzzle(puzzle.GetSize() - 1, i));
 	}
 	return iStream;
+}
+
+void Puzzle::ensureValidInput(std::istream& iStream, int& value)
+{
+	while (true)
+	{
+		std::cout << "Type in a number from 1 to 20: ";
+		iStream >> value;
+		if (iStream.fail() || value < 1 || value > 20)
+		{
+			std::cout << "Provided value is incorrect.\n";
+			iStream.clear();
+			iStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
+		else
+		{
+			iStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			return;
+		}
+	}
 }
