@@ -9,6 +9,22 @@ Puzzle::Puzzle()
 
 }
 
+Puzzle::Puzzle(const int* values)
+{
+	for (int i = 0; i < size - 1; i++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			state[i][j] = values[i * size + j];
+		}
+	}
+	for (int i = 0; i < size - 1; i++)
+	{
+		state[size - 1][i] = values[(size - 1) * size + i];
+	}
+	state[size - 1][size - 1] = values[size * size - 1];
+}
+
 Puzzle::Puzzle(const Puzzle & puzzle)
 {
 	memcpy_s(&(*this)(0, 0), size*size * sizeof(int), &puzzle(0, 0), size*size * sizeof(int));

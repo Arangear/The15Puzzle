@@ -12,6 +12,7 @@ class Puzzle
 {
 public:
 	Puzzle();
+	Puzzle(const int* values);
 	Puzzle(const Puzzle& puzzle);
 	//Data access
 	const int GetSize() const;
