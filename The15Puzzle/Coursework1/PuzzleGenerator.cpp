@@ -1,7 +1,7 @@
-#include "PuzzleGenerator.h"
 //Author:        Daniel Cieslowski
-//Date created:  16.10.2019
+//Date created:  18.10.2019
 //Last modified: 18.10.2019
+#include "PuzzleGenerator.h"
 
 PuzzleGenerator::PuzzleGenerator() : seed(0)
 {
