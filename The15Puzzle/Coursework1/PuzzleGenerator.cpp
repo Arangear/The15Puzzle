@@ -23,6 +23,22 @@ void PuzzleGenerator::Generate(const int count)
 {
 	for (int i = 0; i < count; i++)
 	{
-		std::cout << Next() << "\n";
+		std::cout << Next() << "\n\n";
 	}
+}
+
+void PuzzleGenerator::Generate(const int count, FileWriter& fileWriter)
+{
+	Puzzle puzzle;
+	fileWriter.OpenStream("15-File.txt");
+	fileWriter << count;
+	for (int i = 0; i < count - 1; i++)
+	{
+		puzzle = Next();
+		fileWriter << puzzle;
+		fileWriter << "\n\n";
+	}
+	puzzle = Next();
+	fileWriter << puzzle;
+	fileWriter.CloseStream();
 }

@@ -50,8 +50,6 @@ void UI::displayOptions()
 
 void UI::generatePuzzles()
 {
-	PuzzleGenerator pg(0);
-
 	std::cout << "How many puzzles do you wish to generate? ";
 	while (true)
 	{
@@ -65,8 +63,42 @@ void UI::generatePuzzles()
 		}
 		else
 		{
-			pg.Generate(count);
-			return;
+			if (count < 1)
+			{
+				std::cout << "Number of puzzles to generate must be greater than 0.\n";
+			}
+			else
+			{
+				promptSave(count);
+				return;
+			}
 		}
 	}
+}
+
+void UI::promptSave(const int count)
+{
+	PuzzleGenerator pg(0);
+	while (true)
+	{
+		char choice;
+		std::cout << "Do you want to write generated puzzles to file? [Y/N]";
+		std::cin >> choice;
+		switch (choice)
+		{
+		case 'y':
+		case 'Y':
+			pg.Generate(count, fileWriter);
+			return;
+		case 'n':
+		case 'N':
+			pg.Generate(count);
+			return;
+		default:
+			std::cout << "Unrecognised command.\n";
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
+	}
+
 }
