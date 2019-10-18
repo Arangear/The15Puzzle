@@ -10,13 +10,8 @@
 
 int main()
 {
-	//UI ui;
-	//ui.Display();
-	PuzzleGenerator pg(50);
-	std::cout << pg.Next() << "\n";
-	std::cout << pg.Next() << "\n";
-	std::cout << pg.Next() << "\n";
-	std::cout << pg.Next() << "\n";
+	UI ui;
+	ui.Display();
 
 	return 0;
 }

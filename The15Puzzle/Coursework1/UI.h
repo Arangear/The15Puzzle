@@ -9,4 +9,5 @@ public:
 private:
 	void inputPuzzle(Puzzle& puzzle);
 	void displayOptions();
+	void generatePuzzles();
 };

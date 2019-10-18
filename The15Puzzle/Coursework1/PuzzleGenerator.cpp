@@ -21,5 +21,8 @@ Puzzle PuzzleGenerator::Next()
 
 void PuzzleGenerator::Generate(const int count)
 {
-	//TODO: impement
+	for (int i = 0; i < count; i++)
+	{
+		std::cout << Next() << "\n";
+	}
 }
