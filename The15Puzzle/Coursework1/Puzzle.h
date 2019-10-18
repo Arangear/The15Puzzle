@@ -5,7 +5,7 @@
 #pragma once
 
 #include <iostream>
-#include <unordered_set>
+#include <set>
 
 //Class representing a 15-puzzle problem
 class Puzzle
@@ -27,5 +27,5 @@ private:
 							  {9, 10, 11, 12}, 
 							  {13, 14, 15, -1}};
 
-	void ensureValidInput(std::istream& iStream, int& value);
+	void ensureValidInput(std::istream& iStream, int& value, std::set<int>& values, const int& count);
 };

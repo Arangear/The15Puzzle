@@ -50,25 +50,26 @@ std::ostream & operator<<(std::ostream & oStream, const Puzzle & puzzle)
 
 std::istream & operator>>(std::istream& iStream, Puzzle& puzzle)
 {
+	std::set<int> values;
 	for (int i = 0; i < puzzle.GetSize() - 1; i++)
 	{
 		for (int j = 0; j < puzzle.GetSize(); j++)
 		{
-			puzzle.ensureValidInput(iStream, puzzle(i, j));
+			puzzle.ensureValidInput(iStream, puzzle(i, j), values, i * puzzle.GetSize() + j + 1);
 		}
 	}
 	for (int i = 0; i < puzzle.GetSize() - 1; i++)
 	{
-		puzzle.ensureValidInput(iStream, puzzle(puzzle.GetSize() - 1, i));
+		puzzle.ensureValidInput(iStream, puzzle(puzzle.GetSize() - 1, i), values, puzzle.GetSize() * (puzzle.GetSize() - 1) + i + 1);
 	}
 	return iStream;
 }
 
-void Puzzle::ensureValidInput(std::istream& iStream, int& value)
+void Puzzle::ensureValidInput(std::istream& iStream, int& value, std::set<int>& values, const int& count)
 {
 	while (true)
 	{
-		std::cout << "Type in a number from 1 to 20: ";
+		std::cout << "Type in a unique number from 1 to 20: ";
 		iStream >> value;
 		if (iStream.fail() || value < 1 || value > 20)
 		{
@@ -78,8 +79,17 @@ void Puzzle::ensureValidInput(std::istream& iStream, int& value)
 		}
 		else
 		{
-			iStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			return;
+			values.insert(value);
+			if (values.size() != count)
+			{
+				std::cout << "This value was already provided.\n";
+				iStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			}
+			else
+			{
+				iStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				return;
+			}
 		}
 	}
 }
