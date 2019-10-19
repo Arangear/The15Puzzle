@@ -28,6 +28,7 @@ void UI::Display()
 			printPuzzles();
 			break;
 		case '4':
+			savePuzzles();
 			break;
 		case '5':
 			break;
@@ -48,7 +49,7 @@ void UI::displayOptions()
 	std::cout << "[1] Type in a puzzle\n";
 	std::cout << "[2] Generate puzzles randomly\n";
 	std::cout << "[3] Print puzzles from memory\n";
-	std::cout << "[4] Save puzzles from memory to a file\n";
+	std::cout << "[4] Save puzzles from memory to file\n";
 	std::cout << "[5] Load puzzles from file to memory\n";
 	std::cout << "[6] Provide solutions to puzzles in memory\n";
 	std::cout << "[7] Remove all puzzles from memory\n";
@@ -101,8 +102,22 @@ void UI::printPuzzles()
 	}
 	for (Puzzle& puzzle : puzzles)
 	{
-		std::cout << puzzle << "\n";
+		std::cout << puzzle << "\n\n";
 	}
+}
+
+void UI::savePuzzles()
+{
+	fileWriter.OpenStream("15-File.txt");
+	for (int i = 0; i < puzzles.size() - 1; i++)
+	{
+		fileWriter << puzzles[i];
+		fileWriter << "\n\n";
+	}
+	fileWriter << puzzles[puzzles.size() - 1];
+	fileWriter.CloseStream();
+
+	std::cout << "All puzzles saved to 15-File.txt\n\n";
 }
 
 void UI::loadFile()

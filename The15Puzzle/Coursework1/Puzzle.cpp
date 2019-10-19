@@ -59,7 +59,6 @@ std::ostream & operator<<(std::ostream & oStream, const Puzzle & puzzle)
 	{
 		oStream << puzzle(puzzle.size - 1, i) << " ";
 	}
-	oStream << "\n";
 	return oStream;
 }
 

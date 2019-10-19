@@ -22,5 +22,6 @@ private:
 	void inputPuzzle();
 	void generatePuzzles();
 	void printPuzzles();
+	void savePuzzles();
 	void loadFile();
 };
