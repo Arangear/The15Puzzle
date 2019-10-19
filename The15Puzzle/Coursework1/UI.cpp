@@ -27,6 +27,9 @@ void UI::Display()
 		case '2':
 			generatePuzzles();
 			break;
+		case '3':
+			loadFile();
+			break;
 		default:
 			std::cout << "Unrecognised command.\n";
 			std::cin.clear();
@@ -46,6 +49,7 @@ void UI::displayOptions()
 	std::cout << "[0] Exit the application\n";
 	std::cout << "[1] Type in a puzzle\n";
 	std::cout << "[2] Generate puzzles randomly\n";
+	std::cout << "[3] Load in files from file\n";
 }
 
 void UI::generatePuzzles()
@@ -100,5 +104,9 @@ void UI::promptSave(const int count)
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 	}
+}
+
+void loadFile()
+{
 
 }

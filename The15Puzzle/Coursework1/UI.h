@@ -15,4 +15,5 @@ private:
 	void displayOptions();
 	void generatePuzzles();
 	void promptSave(const int count);
+	void loadFile();
 };
