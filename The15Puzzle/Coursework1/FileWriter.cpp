@@ -6,6 +6,7 @@
 void FileWriter::WritePuzzlesToFile(const char* filePath, std::deque<Puzzle>& puzzles)
 {
 	stream.open(filePath, std::ios::out | std::ios::trunc);
+	stream << puzzles.size() << "\n";
 	for (int i = 0; i < puzzles.size() - 1; i++)
 	{
 		stream << puzzles[i];

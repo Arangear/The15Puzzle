@@ -33,10 +33,29 @@ void FileReader::LoadPuzzles(const std::string& filePath, std::deque<Puzzle>& pu
 	}
 
 	Puzzle puzzle;
-
 	for (int i = 0; i < count; i++)
 	{
-		stream >> puzzle;
+		for (int j = 0; j < puzzle.GetSize() - 1; j++)
+		{
+			for (int k = 0; k < puzzle.GetSize(); k++)
+			{
+				stream >> puzzle(j, k);
+				if (stream.fail())
+				{
+					dataFormatError();
+					return;
+				}
+			}
+		}
+		for (int k = 0; k < puzzle.GetSize() - 1; k++)
+		{
+			stream >> puzzle(puzzle.GetSize() - 1, k);
+			if (stream.fail())
+			{
+				dataFormatError();
+				return;
+			}
+		}
 		puzzles.insert(puzzles.end(), puzzle);
 	}
 
