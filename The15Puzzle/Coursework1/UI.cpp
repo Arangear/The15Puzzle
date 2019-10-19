@@ -31,10 +31,13 @@ void UI::Display()
 			savePuzzles();
 			break;
 		case '5':
+			loadPuzzles();
 			break;
 		case '6':
+			solvePuzzles();
 			break;
 		case '7':
+			clearPuzzles();
 			break;
 		default:
 			inputError("Unrecognised command.\n");
@@ -120,7 +123,18 @@ void UI::savePuzzles()
 	std::cout << "All puzzles saved to 15-File.txt\n\n";
 }
 
-void UI::loadFile()
+void UI::loadPuzzles()
 {
 
+}
+
+void UI::solvePuzzles()
+{
+
+}
+
+void UI::clearPuzzles()
+{
+	puzzles.clear();
+	std::cout << "Successfully removed all the puzzles from memory.\n\n";
 }

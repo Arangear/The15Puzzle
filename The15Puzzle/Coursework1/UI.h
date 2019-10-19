@@ -23,5 +23,7 @@ private:
 	void generatePuzzles();
 	void printPuzzles();
 	void savePuzzles();
-	void loadFile();
+	void loadPuzzles();
+	void solvePuzzles();
+	void clearPuzzles();
 };
