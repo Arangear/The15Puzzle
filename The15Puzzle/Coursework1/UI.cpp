@@ -111,15 +111,7 @@ void UI::printPuzzles()
 
 void UI::savePuzzles()
 {
-	fileWriter.OpenStream("15-File.txt");
-	for (int i = 0; i < puzzles.size() - 1; i++)
-	{
-		fileWriter << puzzles[i];
-		fileWriter << "\n\n";
-	}
-	fileWriter << puzzles[puzzles.size() - 1];
-	fileWriter.CloseStream();
-
+	fileWriter.WritePuzzlesToFile("15-file.txt", puzzles);
 	std::cout << "All puzzles saved to 15-File.txt\n\n";
 }
 
