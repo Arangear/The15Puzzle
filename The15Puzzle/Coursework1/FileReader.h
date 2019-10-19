@@ -10,6 +10,7 @@ class FileReader : public FileManager
 public:
 	void OpenStream(const std::string& filePath);
 	void CloseStream();
+	void LoadPuzzles(const std::string& filePath);
 	friend void operator>>(FileReader& fileReader, Puzzle& puzzle);
 private:
 	std::ifstream stream;

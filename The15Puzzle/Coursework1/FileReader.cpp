@@ -1,7 +1,8 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 18.10.2019
+//Last modified: 19.10.2019
 #include "FileReader.h"
+#include <limits>
 
 void FileReader::OpenStream(const std::string& filePath)
 {
@@ -11,6 +12,31 @@ void FileReader::OpenStream(const std::string& filePath)
 void FileReader::CloseStream()
 {
 	stream.close();
+}
+
+void FileReader::LoadPuzzles(const std::string& filePath)
+{
+	stream.open(filePath);
+	if (stream.fail())
+	{
+		std::cerr << "Error: " << std::strerror(errno);
+		return;
+	}
+
+	int count;
+	stream >> count;
+	if (stream.fail())
+	{
+		std::cerr << "Data format in file incorrect.\n";
+		stream.clear();
+		stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return;
+	}
+
+	for (int i = 0; i < count; i++)
+	{
+		//TODO: load in puzzles
+	}
 }
 
 void operator>>(FileReader& fileReader, Puzzle& puzzle)
