@@ -3,7 +3,6 @@
 //Last modified: 18.10.2019
 #include "UI.h"
 #include "PuzzleGenerator.h"
-#include <limits>
 
 void UI::Display()
 {

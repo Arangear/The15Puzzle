@@ -4,7 +4,6 @@
 #pragma once
 #include "FileManager.h"
 #include "Puzzle.h"
-#include <string>
 
 class FileWriter : public FileManager
 {

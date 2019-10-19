@@ -3,7 +3,6 @@
 //Last modified: 18.10.2019
 
 #pragma once
-
 #include <iostream>
 #include <set>
 

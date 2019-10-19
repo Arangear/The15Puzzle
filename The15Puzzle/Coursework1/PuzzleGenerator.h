@@ -5,8 +5,6 @@
 
 #include "Puzzle.h"
 #include "FileWriter.h"
-#include <random>
-#include <string>
 
 class PuzzleGenerator
 {

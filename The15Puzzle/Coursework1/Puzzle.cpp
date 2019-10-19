@@ -1,8 +1,7 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 18.10.2019
+//Last modified: 19.10.2019
 #include "Puzzle.h"
-#include <limits>
 
 Puzzle::Puzzle()
 {
@@ -88,7 +87,7 @@ void Puzzle::ensureValidInput(std::istream& iStream, int& value, std::set<int>& 
 		iStream >> value;
 		if (iStream.fail() || value < 1 || value > 20)
 		{
-			std::cout << "Provided value is incorrect.\n";
+			std::cerr << "Provided value is incorrect.\n";
 			iStream.clear();
 			iStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
@@ -97,7 +96,7 @@ void Puzzle::ensureValidInput(std::istream& iStream, int& value, std::set<int>& 
 			values.insert(value);
 			if (values.size() != count)
 			{
-				std::cout << "This value was already provided.\n";
+				std::cerr << "This value was already provided.\n";
 				iStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			}
 			else
