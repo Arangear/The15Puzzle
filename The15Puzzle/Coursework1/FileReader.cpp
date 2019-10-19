@@ -15,7 +15,7 @@ void FileReader::CloseStream()
 	stream.close();
 }
 
-void FileReader::LoadPuzzles(const std::string& filePath)
+void FileReader::LoadPuzzles(const std::string& filePath, std::deque<Puzzle>& puzzles)
 {
 	stream.open(filePath);
 	if (stream.fail())
@@ -28,16 +28,19 @@ void FileReader::LoadPuzzles(const std::string& filePath)
 	stream >> count;
 	if (stream.fail())
 	{
-		std::cerr << "Data format in file incorrect.\n";
-		stream.clear();
-		stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		dataFormatError();
 		return;
 	}
 
+	Puzzle puzzle;
+
 	for (int i = 0; i < count; i++)
 	{
-		//TODO: load in puzzles
+		stream >> puzzle;
+		puzzles.insert(puzzles.end(), puzzle);
 	}
+
+	stream.close();
 }
 
 void operator>>(FileReader& fileReader, Puzzle& puzzle)
@@ -49,4 +52,11 @@ void operator>>(FileReader& fileReader, Puzzle& puzzle)
 			fileReader.stream >> puzzle(i, j);
 		}
 	}
+}
+
+void FileReader::dataFormatError()
+{
+	std::cerr << "Data format in file incorrect.\n";
+	stream.clear();
+	stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
