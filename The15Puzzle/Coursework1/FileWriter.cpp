@@ -3,6 +3,18 @@
 //Date created:  16.10.2019
 //Last modified: 18.10.2019
 
+void FileWriter::WritePuzzlesToFile(const char* filePath, std::deque<Puzzle>& puzzles)
+{
+	stream.open(filePath, std::ios::out | std::ios::trunc);
+	for (int i = 0; i < puzzles.size() - 1; i++)
+	{
+		stream << puzzles[i];
+		stream << "\n\n";
+	}
+	stream << puzzles[puzzles.size() - 1];
+	stream.close();
+}
+
 void FileWriter::OpenStream(const std::string& filePath)
 {
 	stream.open(filePath, std::ios::out | std::ios::trunc);
