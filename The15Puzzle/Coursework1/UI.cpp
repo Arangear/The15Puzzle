@@ -27,7 +27,7 @@ void UI::Display()
 			generatePuzzles();
 			break;
 		default:
-			std::cout << "Unrecognised command.\n";
+			std::cerr << "Unrecognised command.\n";
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
