@@ -123,8 +123,6 @@ void UI::loadPuzzles()
 	std::cout << "Provide a path to the file you wish to load in: ";
 	std::cin >> filePath;
 	fileReader.LoadPuzzles(filePath, puzzles);
-	std::cin.clear();
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << "Loaded in " << puzzles.size() - initialCount << " puzzles.\n\n";
 }
 
