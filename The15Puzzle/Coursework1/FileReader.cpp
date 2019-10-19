@@ -2,6 +2,7 @@
 //Date created:  16.10.2019
 //Last modified: 19.10.2019
 #include "FileReader.h"
+#include <string>
 #include <limits>
 
 void FileReader::OpenStream(const std::string& filePath)
@@ -19,7 +20,7 @@ void FileReader::LoadPuzzles(const std::string& filePath)
 	stream.open(filePath);
 	if (stream.fail())
 	{
-		std::cerr << "Error: " << std::strerror(errno);
+		std::cerr << "Failed to open file " << filePath << "\n";
 		return;
 	}
 
