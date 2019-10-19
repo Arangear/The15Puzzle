@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 18.10.2019
+//Last modified: 19.10.2019
 #include "Puzzle.h"
 #include <limits>
 
@@ -59,7 +59,7 @@ std::ostream & operator<<(std::ostream & oStream, const Puzzle & puzzle)
 	{
 		oStream << puzzle(puzzle.size - 1, i) << " ";
 	}
-
+	oStream << "\n";
 	return oStream;
 }
 

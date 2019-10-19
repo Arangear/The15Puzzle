@@ -13,6 +13,7 @@ void UI::Display()
 
 		displayOptions();
 		std::cin >> choice;
+
 		switch (choice)
 		{
 		case '0':
@@ -64,6 +65,7 @@ void UI::inputPuzzle()
 {
 	Puzzle puzzle;
 	std::cin >> puzzle;
+	std::cout << "\n";
 	puzzles.insert(puzzles.end(), puzzle);
 }
 
@@ -92,6 +94,15 @@ void UI::generatePuzzles()
 
 void UI::printPuzzles()
 {
+	if (puzzles.empty())
+	{
+		std::cout << "No puzzles in memory.\n";
+		return;
+	}
+	for (Puzzle& puzzle : puzzles)
+	{
+		std::cout << puzzle << "\n";
+	}
 }
 
 void UI::loadFile()
