@@ -128,6 +128,11 @@ void UI::loadPuzzles()
 
 void UI::solvePuzzles()
 {
+	for (Puzzle& puzzle : puzzles)
+	{
+		solver.Solve(puzzle);
+	}
+	std::cout << "All puzzles' solutions found.\n\n";
 
 }
 
