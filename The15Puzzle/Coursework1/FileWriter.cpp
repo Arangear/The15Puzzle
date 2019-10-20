@@ -1,7 +1,7 @@
-#include "FileWriter.h"
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 18.10.2019
+//Last modified: 20.10.2019
+#include "FileWriter.h"
 
 void FileWriter::WritePuzzlesToFile(const char* filePath, std::deque<Puzzle>& puzzles)
 {
