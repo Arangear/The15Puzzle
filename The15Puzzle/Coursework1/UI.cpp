@@ -66,12 +66,12 @@ void UI::displayOptions()
 	std::cout << "[3] Print puzzles from memory\n";
 	std::cout << "[4] Save puzzles from memory to file\n";
 	std::cout << "[5] Load puzzles from file to memory\n";
-	std::cout << "[6] Provide solutions to puzzles in memory\n";
+	std::cout << "[6] Solve all puzzles in memory\n";
 	std::cout << "[7] Remove all puzzles from memory\n";
 	if (solved)
 	{
-		std::cout << "[8] Print all solutions to console";
-		std::cout << "[9] Print all solutions to file";
+		std::cout << "[8] Print all solutions to console\n";
+		std::cout << "[9] Print all solutions to file\n";
 	}
 }
 
@@ -168,8 +168,18 @@ void UI::clearPuzzles()
 
 void UI::printSolutionsToConsole()
 {
+	std::cout << puzzles.size() << "\n";
+	for (Puzzle& puzzle : puzzles)
+	{
+		std::cout << puzzle << "\n";
+		std::cout << "row " << puzzle.GetSolution().rows << "\n";
+		std::cout << "column " << puzzle.GetSolution().columns << "\n";
+		std::cout << "reverse row " << puzzle.GetSolution().reversedRows << "\n";
+		std::cout << "reverse column " << puzzle.GetSolution().reversedColumns << "\n\n";
+	}
 }
 
 void UI::printSolutionsToFile()
 {
+
 }
