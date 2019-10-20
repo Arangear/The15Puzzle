@@ -34,6 +34,16 @@ const int Puzzle::GetSize() const
 	return size;
 }
 
+const solution Puzzle::GetSolution() const
+{
+	return solution;
+}
+
+void Puzzle::SetSolution(const int rows, const int reversedRows, const int columns, const int reversedColumns)
+{
+	solution = { rows, reversedRows, columns, reversedColumns };
+}
+
 const int & Puzzle::operator()(const int x, const int y) const
 {
 	return state[x][y];
