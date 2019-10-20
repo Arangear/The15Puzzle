@@ -15,6 +15,11 @@ void FileWriter::WritePuzzlesToFile(const char* filePath, std::deque<Puzzle>& pu
 	stream.close();
 }
 
+void FileWriter::WriteSolutionsToFile(const std::string & filePath, std::deque<Puzzle>& puzzles)
+{
+
+}
+
 void FileWriter::OpenStream(const std::string& filePath)
 {
 	stream.open(filePath, std::ios::out | std::ios::trunc);
