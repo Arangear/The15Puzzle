@@ -1,37 +1,22 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 19.10.2019
+//Last modified: 20.10.2019
 #include "FileReader.h"
 #include <string>
 #include <limits>
 
-void FileReader::OpenStream(const std::string& filePath)
+void FileReader::openStream(const std::string& filePath)
 {
 	stream.open(filePath, std::ios::in);
 }
 
-void FileReader::CloseStream()
+void FileReader::closeStream()
 {
 	stream.close();
 }
 
-void FileReader::LoadPuzzles(const std::string& filePath, std::deque<Puzzle>& puzzles)
+void FileReader::loadPuzzles(const int& count, std::deque<Puzzle>& puzzles)
 {
-	stream.open(filePath);
-	if (stream.fail())
-	{
-		std::cerr << "Failed to open file " << filePath << "\n";
-		return;
-	}
-
-	int count;
-	stream >> count;
-	if (stream.fail())
-	{
-		dataFormatError();
-		return;
-	}
-
 	Puzzle puzzle;
 	for (int i = 0; i < count; i++)
 	{
@@ -58,8 +43,29 @@ void FileReader::LoadPuzzles(const std::string& filePath, std::deque<Puzzle>& pu
 		}
 		puzzles.insert(puzzles.end(), puzzle);
 	}
+}
 
-	stream.close();
+void FileReader::LoadPuzzles(const std::string& filePath, std::deque<Puzzle>& puzzles)
+{
+	openStream(filePath);
+
+	if (stream.fail())
+	{
+		std::cerr << "Failed to open file " << filePath << "\n";
+		return;
+	}
+
+	int count;
+	stream >> count;
+	if (stream.fail())
+	{
+		dataFormatError();
+		stream.close();
+		return;
+	}
+
+	loadPuzzles(count, puzzles);
+	closeStream();
 }
 
 void operator>>(FileReader& fileReader, Puzzle& puzzle)

@@ -5,7 +5,7 @@
 
 void FileWriter::WritePuzzlesToFile(const char* filePath, std::deque<Puzzle>& puzzles)
 {
-	stream.open(filePath, std::ios::out | std::ios::trunc);
+	openStream(filePath);
 	stream << puzzles.size() << "\n";
 	for (int i = 0; i < puzzles.size() - 1; i++)
 	{
@@ -13,12 +13,12 @@ void FileWriter::WritePuzzlesToFile(const char* filePath, std::deque<Puzzle>& pu
 		stream << "\n\n";
 	}
 	stream << puzzles[puzzles.size() - 1];
-	stream.close();
+	closeStream();
 }
 
 void FileWriter::WriteSolutionsToFile(const std::string & filePath, std::deque<Puzzle>& puzzles)
 {
-	stream.open(filePath, std::ios::out | std::ios::trunc);
+	openStream(filePath);
 	stream << puzzles.size() << "\n";
 	for (int i = 0; i < puzzles.size() - 1; i++)
 	{
@@ -33,15 +33,15 @@ void FileWriter::WriteSolutionsToFile(const std::string & filePath, std::deque<P
 	stream << "column " << puzzles[puzzles.size() - 1].GetSolution().columns << "\n";
 	stream << "reverse row " << puzzles[puzzles.size() - 1].GetSolution().reversedRows << "\n";
 	stream << "reverse column " << puzzles[puzzles.size() - 1].GetSolution().reversedColumns;
-	stream.close();
+	closeStream();
 }
 
-void FileWriter::OpenStream(const std::string& filePath)
+void FileWriter::openStream(const std::string& filePath)
 {
 	stream.open(filePath, std::ios::out | std::ios::trunc);
 }
 
-void FileWriter::CloseStream()
+void FileWriter::closeStream()
 {
 	stream.close();
 }
