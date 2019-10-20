@@ -1,15 +1,10 @@
 //Author:        Daniel Cieslowski
 //Date created:  18.10.2019
-//Last modified: 18.10.2019
+//Last modified: 19.10.2019
 #include "PuzzleGenerator.h"
 #include <random>
 
 PuzzleGenerator::PuzzleGenerator() : seed(0)
-{
-
-}
-
-PuzzleGenerator::PuzzleGenerator(const int seed) : seed(seed)
 {
 
 }
@@ -20,26 +15,10 @@ Puzzle PuzzleGenerator::Next()
 	return Puzzle(values);
 }
 
-void PuzzleGenerator::Generate(const int count)
+void PuzzleGenerator::Generate(const int count, std::deque<Puzzle>& puzzles)
 {
 	for (int i = 0; i < count; i++)
 	{
-		std::cout << Next() << "\n\n";
+		puzzles.insert(puzzles.end(), Next());
 	}
-}
-
-void PuzzleGenerator::Generate(const int count, FileWriter& fileWriter)
-{
-	Puzzle puzzle;
-	fileWriter.OpenStream("15-File.txt");
-	fileWriter << count;
-	for (int i = 0; i < count - 1; i++)
-	{
-		puzzle = Next();
-		fileWriter << puzzle;
-		fileWriter << "\n\n";
-	}
-	puzzle = Next();
-	fileWriter << puzzle;
-	fileWriter.CloseStream();
 }
