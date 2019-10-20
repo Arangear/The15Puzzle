@@ -3,7 +3,7 @@
 //Last modified: 20.10.2019
 #include "FileWriter.h"
 
-void FileWriter::WritePuzzlesToFile(const char* filePath, std::deque<Puzzle>& puzzles)
+void FileWriter::WritePuzzlesToFile(const std::string& filePath, std::deque<Puzzle>& puzzles)
 {
 	openStream(filePath);
 	stream << puzzles.size() << "\n";

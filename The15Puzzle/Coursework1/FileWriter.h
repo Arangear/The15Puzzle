@@ -11,7 +11,7 @@
 class FileWriter : public FileManager
 {
 public:
-	void WritePuzzlesToFile(const char* filePath, std::deque<Puzzle>& puzzles);
+	void WritePuzzlesToFile(const std::string& filePath, std::deque<Puzzle>& puzzles);
 	void WriteSolutionsToFile(const std::string& filePath, std::deque<Puzzle>& puzzles);
 
 	friend void operator<<(FileWriter& fw, const Puzzle& puzzle);
