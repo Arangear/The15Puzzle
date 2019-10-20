@@ -181,5 +181,6 @@ void UI::printSolutionsToConsole()
 
 void UI::printSolutionsToFile()
 {
-
+	fileWriter.WriteSolutionsToFile("solution.txt", puzzles);
+	std::cout << "All solutions saved to solution.txt\n\n";
 }
