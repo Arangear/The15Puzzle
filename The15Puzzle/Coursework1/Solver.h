@@ -6,7 +6,7 @@ class Solver
 {
 public:
 	Solver();
-	solution Solve(Puzzle& puzzle);
+	void Solve(Puzzle& puzzle);
 private:
 
 };
