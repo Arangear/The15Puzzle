@@ -13,6 +13,7 @@ class UI
 public:
 	void Display();
 private:
+	bool solved = false;
 	PuzzleGenerator puzzleGenerator;
 	FileReader fileReader;
 	FileWriter fileWriter;
@@ -28,4 +29,6 @@ private:
 	void loadPuzzles();
 	void solvePuzzles();
 	void clearPuzzles();
+	void printSolutionsToConsole();
+	void printSolutionsToFile();
 };

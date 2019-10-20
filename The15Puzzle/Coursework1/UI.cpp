@@ -39,6 +39,18 @@ void UI::Display()
 		case '7':
 			clearPuzzles();
 			break;
+		case '8':
+			if (solved)
+			{
+				printSolutionsToConsole();
+				break;
+			}
+		case '9':
+			if (solved)
+			{
+				printSolutionsToFile();
+				break;
+			}
 		default:
 			inputError("Unrecognised command.\n");
 		}
@@ -56,6 +68,11 @@ void UI::displayOptions()
 	std::cout << "[5] Load puzzles from file to memory\n";
 	std::cout << "[6] Provide solutions to puzzles in memory\n";
 	std::cout << "[7] Remove all puzzles from memory\n";
+	if (solved)
+	{
+		std::cout << "[8] Print all solutions to console";
+		std::cout << "[9] Print all solutions to file";
+	}
 }
 
 void UI::inputError(const char * string)
@@ -71,6 +88,7 @@ void UI::inputPuzzle()
 	std::cin >> puzzle;
 	std::cout << "\n";
 	puzzles.insert(puzzles.end(), puzzle);
+	solved = false;
 }
 
 void UI::generatePuzzles()
@@ -91,6 +109,7 @@ void UI::generatePuzzles()
 		else
 		{
 			puzzleGenerator.Generate(count, puzzles);
+			solved = false;
 			return;
 		}
 	}
@@ -124,6 +143,10 @@ void UI::loadPuzzles()
 	std::cin >> filePath;
 	fileReader.LoadPuzzles(filePath, puzzles);
 	std::cout << "Loaded in " << puzzles.size() - initialCount << " puzzles.\n\n";
+	if (puzzles.size() - initialCount == 0)
+	{
+		solved = false;
+	}
 }
 
 void UI::solvePuzzles()
@@ -133,11 +156,20 @@ void UI::solvePuzzles()
 		solver.Solve(puzzle);
 	}
 	std::cout << "All puzzles' solutions found.\n\n";
-
+	solved = true;
 }
 
 void UI::clearPuzzles()
 {
 	puzzles.clear();
 	std::cout << "Successfully removed all the puzzles from memory.\n\n";
+	solved = false;
+}
+
+void UI::printSolutionsToConsole()
+{
+}
+
+void UI::printSolutionsToFile()
+{
 }
