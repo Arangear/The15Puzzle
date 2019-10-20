@@ -5,6 +5,7 @@
 
 #include "FileReader.h"
 #include "FileWriter.h"
+#include "Solver.h"
 #include "PuzzleGenerator.h"
 
 class UI
@@ -15,6 +16,7 @@ private:
 	PuzzleGenerator puzzleGenerator;
 	FileReader fileReader;
 	FileWriter fileWriter;
+	Solver solver;
 	std::deque<Puzzle> puzzles;
 
 	void displayOptions();
