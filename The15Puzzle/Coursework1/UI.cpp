@@ -75,9 +75,9 @@ void UI::displayOptions()
 	}
 }
 
-void UI::inputError(const char * string)
+void UI::inputError(std::string message)
 {
-	std::cerr << string;
+	std::cerr << message;
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

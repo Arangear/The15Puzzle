@@ -7,6 +7,7 @@
 #include "FileWriter.h"
 #include "Solver.h"
 #include "PuzzleGenerator.h"
+#include <set>
 
 class UI
 {
@@ -21,7 +22,7 @@ private:
 	std::deque<Puzzle> puzzles;
 
 	void displayOptions();
-	void inputError(const char* string);
+	void inputError(std::string message);
 	void inputPuzzle();
 	void generatePuzzles();
 	void printPuzzles();
