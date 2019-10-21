@@ -9,10 +9,13 @@
 #include "PuzzleGenerator.h"
 #include <set>
 
-//class responsible for communication between users and the application
+//Class responsible for communication between users and the application.
 class UI
 {
 public:
+	//Methods
+
+	//Displays the user menu.
 	void Display();
 private:
 	bool allPuzzlesSolved = false;

@@ -5,6 +5,7 @@
 
 #include <fstream>
 
+//Abstract class for managing file input and output.
 class FileManager
 {
 private:

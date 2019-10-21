@@ -9,9 +9,12 @@
 
 enum result { success, openFail, readFail };
 
+//Class responsible for reading files and loading in puzzles.
 class FileReader : public FileManager
 {
 public:
+	//Method loading in puzzles to puzzles deque from file indicated by filePath.
+	//Returns enum indicating if the operation was successful or if an error occurred.
 	result LoadPuzzles(const std::string filePath, std::deque<Puzzle>& puzzles);
 private:
 	std::ifstream stream;
