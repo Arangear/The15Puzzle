@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
 //Date created:  17.10.2019
-//Last modified: 20.10.2019
+//Last modified: 21.10.2019
 #include "UI.h"
 #include <limits>
 
@@ -40,13 +40,13 @@ void UI::Display()
 			clearPuzzles();
 			break;
 		case '8':
-			if (solved)
+			if (allPuzzlesSolved)
 			{
 				printSolutionsToConsole();
 				break;
 			}
 		case '9':
-			if (solved)
+			if (allPuzzlesSolved)
 			{
 				printSolutionsToFile();
 				break;
@@ -68,18 +68,11 @@ void UI::displayOptions()
 	std::cout << "[5] Load puzzles from file to memory\n";
 	std::cout << "[6] Solve all puzzles in memory\n";
 	std::cout << "[7] Remove all puzzles from memory\n";
-	if (solved)
+	if (allPuzzlesSolved)
 	{
 		std::cout << "[8] Print all solutions to console\n";
 		std::cout << "[9] Print all solutions to file\n";
 	}
-}
-
-void UI::inputError(std::string message)
-{
-	std::cerr << message;
-	std::cin.clear();
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void UI::inputPuzzle()
@@ -94,7 +87,7 @@ void UI::inputPuzzle()
 	std::cout << "\n";
 
 	puzzles.insert(puzzles.end(), puzzle);
-	solved = false;
+	allPuzzlesSolved = false;
 }
 
 void UI::generatePuzzles()
@@ -115,7 +108,7 @@ void UI::generatePuzzles()
 		else
 		{
 			puzzleGenerator.Generate(count, puzzles);
-			solved = false;
+			allPuzzlesSolved = false;
 			return;
 		}
 	}
@@ -125,7 +118,7 @@ void UI::printPuzzles()
 {
 	if (puzzles.empty())
 	{
-		std::cout << "No puzzles in memory.\n";
+		std::cout << "No puzzles in memory.\n\n";
 		return;
 	}
 	for (Puzzle& puzzle : puzzles)
@@ -136,8 +129,9 @@ void UI::printPuzzles()
 
 void UI::savePuzzles()
 {
-	fileWriter.WritePuzzlesToFile("15-file.txt", puzzles);
-	std::cout << "All puzzles saved to 15-File.txt\n\n";
+	std::string filePath = getFilePath("Type in path to the file you wish to save puzzles to: ");
+	fileWriter.WritePuzzlesToFile(filePath, puzzles);
+	std::cout << "All puzzles saved to " << filePath << "\n\n";
 }
 
 void UI::loadPuzzles()
@@ -147,11 +141,22 @@ void UI::loadPuzzles()
 
 	std::cout << "Provide a path to the file you wish to load in: ";
 	std::cin >> filePath;
-	fileReader.LoadPuzzles(filePath, puzzles);
-	std::cout << "Loaded in " << puzzles.size() - initialCount << " puzzles.\n\n";
-	if (puzzles.size() - initialCount == 0)
+
+	switch (fileReader.LoadPuzzles(filePath, puzzles))
 	{
-		solved = false;
+	case success:
+		std::cout << "Loaded in " << puzzles.size() - initialCount << " puzzles.\n\n";
+		break;
+	case readFail:
+		std::cerr << "Data format in file incorrect.\n";
+		std::cout << "Managed to load in " << puzzles.size() - initialCount << " puzzles.\n\n";
+		break;
+	case openFail:
+		std::cerr << "Failed to open file " << filePath << "\n";
+	}
+	if (puzzles.size() - initialCount != 0)
+	{
+		allPuzzlesSolved = false;
 	}
 }
 
@@ -162,14 +167,14 @@ void UI::solvePuzzles()
 		solver.Solve(puzzle);
 	}
 	std::cout << "All puzzles' solutions found.\n\n";
-	solved = true;
+	allPuzzlesSolved = true;
 }
 
 void UI::clearPuzzles()
 {
 	puzzles.clear();
 	std::cout << "Successfully removed all the puzzles from memory.\n\n";
-	solved = false;
+	allPuzzlesSolved = false;
 }
 
 void UI::printSolutionsToConsole()
@@ -220,4 +225,21 @@ int UI::ensureValidInput(std::set<int>& values, int count)
 			}
 		}
 	}
+}
+
+void UI::inputError(std::string message)
+{
+	std::cerr << message;
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+std::string UI::getFilePath(std::string message)
+{
+	std::string filePath;
+
+	std::cout << message;
+	std::cin >> filePath;
+
+	return filePath;
 }

@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
 //Date created:  17.10.2019
-//Last modified: 20.10.2019
+//Last modified: 21.10.2019
 #pragma once
 
 #include "FileReader.h"
@@ -9,12 +9,13 @@
 #include "PuzzleGenerator.h"
 #include <set>
 
+//class responsible for communication between users and the application
 class UI
 {
 public:
 	void Display();
 private:
-	bool solved = false;
+	bool allPuzzlesSolved = false;
 	PuzzleGenerator puzzleGenerator;
 	FileReader fileReader;
 	FileWriter fileWriter;
@@ -22,7 +23,6 @@ private:
 	std::deque<Puzzle> puzzles;
 
 	void displayOptions();
-	void inputError(std::string message);
 	void inputPuzzle();
 	void generatePuzzles();
 	void printPuzzles();
@@ -32,5 +32,8 @@ private:
 	void clearPuzzles();
 	void printSolutionsToConsole();
 	void printSolutionsToFile();
+
 	int ensureValidInput(std::set<int>& values, int count);
+	void inputError(std::string message);
+	std::string getFilePath(std::string message);
 };
