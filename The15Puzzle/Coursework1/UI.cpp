@@ -77,7 +77,7 @@ void UI::displayOptions()
 
 void UI::inputError(const char * string)
 {
-	std::cerr << "Provided value is incorrect.\n";
+	std::cerr << string;
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
@@ -85,8 +85,14 @@ void UI::inputError(const char * string)
 void UI::inputPuzzle()
 {
 	Puzzle puzzle;
-	std::cin >> puzzle;
+	std::set<int> values;
+
+	for (int i = 0; i < puzzle.ElementCount(); i++)
+	{
+		puzzle(i) = ensureValidInput(values, i + 1);
+	}
 	std::cout << "\n";
+
 	puzzles.insert(puzzles.end(), puzzle);
 	solved = false;
 }
@@ -183,4 +189,35 @@ void UI::printSolutionsToFile()
 {
 	fileWriter.WriteSolutionsToFile("solution.txt", puzzles);
 	std::cout << "All solutions saved to solution.txt\n\n";
+}
+
+int UI::ensureValidInput(std::set<int>& values, int count)
+{
+	int value;
+
+	while (true)
+	{
+		std::cout << "Type in a unique number from 1 to 20: ";
+		std::cin >> value;
+
+		if (std::cin.fail() || value < 1 || value > 20)
+		{
+			inputError("Provided value is incorrect.\n");
+		}
+		else
+		{
+			values.insert(value);
+
+			if (values.size() != count)
+			{
+				inputError("This value was already provided.\n");
+			}
+			else
+			{
+				count++;
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				return value;
+			}
+		}
+	}
 }

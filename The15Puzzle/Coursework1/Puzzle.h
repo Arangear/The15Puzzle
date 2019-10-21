@@ -32,12 +32,9 @@ public:
 	int& operator()(const int x);
 	//IO
 	friend std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle);
-	friend std::istream& operator>>(std::istream& iStream, Puzzle& puzzle);
 private:
 	static const int size = 4;
 	static const int elementCount = size * size - 1;
 	int state[elementCount];
 	solution solution;
-
-	void ensureValidInput(std::istream& iStream, int& value, std::set<int>& values, const int& count);
 };

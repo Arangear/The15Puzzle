@@ -31,4 +31,5 @@ private:
 	void clearPuzzles();
 	void printSolutionsToConsole();
 	void printSolutionsToFile();
+	int ensureValidInput(std::set<int>& values, int count);
 };
