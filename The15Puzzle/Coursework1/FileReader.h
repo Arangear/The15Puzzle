@@ -11,7 +11,6 @@ class FileReader : public FileManager
 {
 public:
 	void LoadPuzzles(const std::string& filePath, std::deque<Puzzle>& puzzles);
-	friend void operator>>(FileReader& fileReader, Puzzle& puzzle);
 private:
 	std::ifstream stream;
 

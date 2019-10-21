@@ -20,21 +20,9 @@ void FileReader::loadPuzzles(const int& count, std::deque<Puzzle>& puzzles)
 	Puzzle puzzle;
 	for (int i = 0; i < count; i++)
 	{
-		for (int j = 0; j < puzzle.GetSize() - 1; j++)
+		for (int j = 0; j < puzzle.ElementCount(); j++)
 		{
-			for (int k = 0; k < puzzle.GetSize(); k++)
-			{
-				stream >> puzzle(j, k);
-				if (stream.fail())
-				{
-					dataFormatError();
-					return;
-				}
-			}
-		}
-		for (int k = 0; k < puzzle.GetSize() - 1; k++)
-		{
-			stream >> puzzle(puzzle.GetSize() - 1, k);
+			stream >> puzzle(j);
 			if (stream.fail())
 			{
 				dataFormatError();
@@ -66,17 +54,6 @@ void FileReader::LoadPuzzles(const std::string& filePath, std::deque<Puzzle>& pu
 
 	loadPuzzles(count, puzzles);
 	closeStream();
-}
-
-void operator>>(FileReader& fileReader, Puzzle& puzzle)
-{
-	for (int i = 0; i < puzzle.GetSize(); i++)
-	{
-		for (int j = 0; j < puzzle.GetSize(); j++)
-		{
-			fileReader.stream >> puzzle(i, j);
-		}
-	}
 }
 
 void FileReader::dataFormatError()
