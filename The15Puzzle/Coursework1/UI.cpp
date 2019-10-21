@@ -129,7 +129,7 @@ void UI::printPuzzles()
 
 void UI::savePuzzles()
 {
-	std::string filePath = getFilePath("Type in path to the file you wish to save puzzles to: ");
+	std::string filePath = getFilePath("Provide a path to the file you wish to save the puzzles to: ");
 	fileWriter.WritePuzzlesToFile(filePath, puzzles);
 	std::cout << "All puzzles saved to " << filePath << "\n\n";
 }
@@ -139,7 +139,7 @@ void UI::loadPuzzles()
 	int initialCount = puzzles.size();
 	std::string filePath;
 
-	std::cout << "Provide a path to the file you wish to load in: ";
+	std::cout << "Provide a path to the file you wish to load the puzzles from: ";
 	std::cin >> filePath;
 
 	switch (fileReader.LoadPuzzles(filePath, puzzles))
