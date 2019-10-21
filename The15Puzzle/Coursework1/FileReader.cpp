@@ -5,7 +5,7 @@
 #include <string>
 #include <limits>
 
-void FileReader::openStream(const std::string& filePath)
+void FileReader::openStream(const std::string filePath)
 {
 	stream.open(filePath, std::ios::in);
 }

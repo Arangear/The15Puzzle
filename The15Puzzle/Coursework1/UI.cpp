@@ -137,10 +137,7 @@ void UI::savePuzzles()
 void UI::loadPuzzles()
 {
 	int initialCount = puzzles.size();
-	std::string filePath;
-
-	std::cout << "Provide a path to the file you wish to load the puzzles from: ";
-	std::cin >> filePath;
+	std::string filePath = getFilePath("Provide a path to the file you wish to load the puzzles from: ");
 
 	switch (fileReader.LoadPuzzles(filePath, puzzles))
 	{
@@ -195,8 +192,9 @@ void UI::printSolutionsToConsole()
 
 void UI::printSolutionsToFile()
 {
-	fileWriter.WriteSolutionsToFile("solution.txt", puzzles);
-	std::cout << "All solutions saved to solution.txt\n\n";
+	std::string filePath = getFilePath("Provide a path to the file you wish to save all the solutions to: ");
+	fileWriter.WriteSolutionsToFile(filePath, puzzles);
+	std::cout << "All solutions saved to " << filePath << "\n\n";
 }
 
 int UI::ensureValidInput(std::set<int>& values, int count)

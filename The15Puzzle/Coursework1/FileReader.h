@@ -16,7 +16,7 @@ public:
 private:
 	std::ifstream stream;
 
-	void openStream(const std::string& filePath);
+	void openStream(const std::string filePath);
 	void closeStream();
 	result loadPuzzles(const int count, std::deque<Puzzle>& puzzles);
 };

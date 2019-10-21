@@ -1,13 +1,13 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 20.10.2019
+//Last modified: 21.10.2019
 #include "FileWriter.h"
 
-void FileWriter::WritePuzzlesToFile(const std::string& filePath, std::deque<Puzzle>& puzzles)
+void FileWriter::WritePuzzlesToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
 {
 	openStream(filePath);
 	stream << puzzles.size() << "\n";
-	for (int i = 0; i < puzzles.size() - 1; i++)
+	for (unsigned int i = 0; i < puzzles.size() - 1; i++)
 	{
 		stream << puzzles[i];
 		stream << "\n\n";
@@ -16,11 +16,11 @@ void FileWriter::WritePuzzlesToFile(const std::string& filePath, std::deque<Puzz
 	closeStream();
 }
 
-void FileWriter::WriteSolutionsToFile(const std::string & filePath, std::deque<Puzzle>& puzzles)
+void FileWriter::WriteSolutionsToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
 {
 	openStream(filePath);
 	stream << puzzles.size() << "\n";
-	for (int i = 0; i < puzzles.size() - 1; i++)
+	for (unsigned int i = 0; i < puzzles.size() - 1; i++)
 	{
 		stream << puzzles[i] << "\n";
 		stream << "row " << puzzles[i].GetSolution().rows << "\n";
@@ -36,7 +36,7 @@ void FileWriter::WriteSolutionsToFile(const std::string & filePath, std::deque<P
 	closeStream();
 }
 
-void FileWriter::openStream(const std::string& filePath)
+void FileWriter::openStream(const std::string filePath)
 {
 	stream.open(filePath, std::ios::out | std::ios::trunc);
 }
@@ -51,12 +51,12 @@ void operator<<(FileWriter& fw, const Puzzle& puzzle)
 	fw.stream << puzzle;
 }
 
-void operator<<(FileWriter& fw, const char* string)
+void operator<<(FileWriter& fw, const std::string message)
 {
-	fw.stream << string;
+	fw.stream << message;
 }
 
-void operator<<(FileWriter & fw, const int & number)
+void operator<<(FileWriter& fw, const int number)
 {
 	fw.stream << number << "\n";
 }
