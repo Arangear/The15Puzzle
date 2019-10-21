@@ -21,6 +21,8 @@ public:
 	Puzzle(const int* values);
 	Puzzle(const Puzzle& puzzle);
 	//Data access
+	const bool IsSolved() const;
+	void Solve();
 	const int Size() const;
 	const int ElementCount() const;
 	const solution GetSolution() const;
@@ -36,4 +38,5 @@ private:
 	static const int elementCount = size * size - 1;
 	int state[elementCount];
 	solution solution;
+	bool solved = false;
 };

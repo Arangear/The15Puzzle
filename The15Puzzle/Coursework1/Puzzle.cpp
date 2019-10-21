@@ -21,6 +21,16 @@ Puzzle::Puzzle(const Puzzle & puzzle)
 	memcpy_s(&(*this)(0, 0), elementCount * sizeof(int), &puzzle(0, 0), elementCount * sizeof(int));
 }
 
+const bool Puzzle::IsSolved() const
+{
+	return solved;
+}
+
+void Puzzle::Solve()
+{
+	solved = true;
+}
+
 const int Puzzle::Size() const
 {
 	return size;
