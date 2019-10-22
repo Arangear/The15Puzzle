@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 21.10.2019
+//Last modified: 22.10.2019
 #pragma once
 #include "FileManager.h"
 #include "Puzzle.h"
@@ -15,9 +15,11 @@ public:
 	//Methods
 
 	//Writes puzzles from puzzles deque into file indicated by filePath.
-	void WritePuzzlesToFile(const std::string filePath, std::deque<Puzzle>& puzzles);
+	//Returns enum indicating if the operation was successful or if an error occurred.
+	result WritePuzzlesToFile(const std::string filePath, std::deque<Puzzle>& puzzles);
 	//Writes solutions from puzzles deque into file indicated by filePath.
-	void WriteSolutionsToFile(const std::string filePath, std::deque<Puzzle>& puzzles);
+	//Returns enum indicating if the operation was successful or if an error occurred.
+	result WriteSolutionsToFile(const std::string filePath, std::deque<Puzzle>& puzzles);
 
 	//Operators
 
@@ -27,6 +29,6 @@ public:
 private:
 	std::ofstream stream;
 
-	void openStream(const std::string filePath);
+	bool openStream(const std::string filePath);
 	void closeStream();
 };

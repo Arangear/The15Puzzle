@@ -9,43 +9,49 @@ void UI::Display()
 	std::cout << "Welcome to The 15 Puzzle!\n\n";
 	while (true)
 	{
-		char choice;
+		int choice;
 
 		displayOptions();
 		std::cin >> choice;
 
+		if (std::cin.fail())
+		{
+			inputError("Unrecognised command.\n");
+			continue;
+		}
+
 		switch (choice)
 		{
-		case '0':
+		case 0:
 			return;
-		case '1':
+		case 1:
 			inputPuzzle();
 			break;
-		case '2':
+		case 2:
 			generatePuzzles();
 			break;
-		case '3':
+		case 3:
 			printPuzzles();
 			break;
-		case '4':
+		case 4:
 			savePuzzles();
 			break;
-		case '5':
+		case 5:
 			loadPuzzles();
 			break;
-		case '6':
+		case 6:
 			solvePuzzles();
 			break;
-		case '7':
+		case 7:
 			clearPuzzles();
 			break;
-		case '8':
+		case 8:
 			if (allPuzzlesSolved)
 			{
 				printSolutionsToConsole();
 				break;
 			}
-		case '9':
+		case 9:
 			if (allPuzzlesSolved)
 			{
 				printSolutionsToFile();
@@ -130,8 +136,7 @@ void UI::printPuzzles()
 void UI::savePuzzles()
 {
 	std::string filePath = getFilePath("Provide a path to the file you wish to save the puzzles to: ");
-	fileWriter.WritePuzzlesToFile(filePath, puzzles);
-	std::cout << "All puzzles saved to " << filePath << "\n\n";
+	openFile(fileWriter.WritePuzzlesToFile(filePath, puzzles), filePath, "All puzzles saved to ");
 }
 
 void UI::loadPuzzles()
@@ -193,8 +198,7 @@ void UI::printSolutionsToConsole()
 void UI::printSolutionsToFile()
 {
 	std::string filePath = getFilePath("Provide a path to the file you wish to save all the solutions to: ");
-	fileWriter.WriteSolutionsToFile(filePath, puzzles);
-	std::cout << "All solutions saved to " << filePath << "\n\n";
+	openFile(fileWriter.WriteSolutionsToFile(filePath, puzzles), filePath, "All solutions saved to ");
 }
 
 int UI::ensureValidInput(std::set<int>& values, int count)
@@ -243,4 +247,16 @@ std::string UI::getFilePath(std::string message)
 	std::cin >> filePath;
 
 	return filePath;
+}
+
+void UI::openFile(result result, std::string filePath, std::string message)
+{
+	if (result == openFail)
+	{
+		std::cout << "Couldn't open file " << filePath << ".\n\n";
+	}
+	else
+	{
+		std::cout << message << filePath << ".\n\n";
+	}
 }

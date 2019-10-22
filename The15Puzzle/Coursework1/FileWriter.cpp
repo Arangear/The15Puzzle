@@ -1,11 +1,14 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 21.10.2019
+//Last modified: 22.10.2019
 #include "FileWriter.h"
 
-void FileWriter::WritePuzzlesToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
+result FileWriter::WritePuzzlesToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
 {
-	openStream(filePath);
+	if (!openStream(filePath))
+	{
+		return openFail;
+	}
 	stream << puzzles.size() << "\n";
 	for (unsigned int i = 0; i < puzzles.size() - 1; i++)
 	{
@@ -14,11 +17,15 @@ void FileWriter::WritePuzzlesToFile(const std::string filePath, std::deque<Puzzl
 	}
 	stream << puzzles[puzzles.size() - 1];
 	closeStream();
+	return success;
 }
 
-void FileWriter::WriteSolutionsToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
+result FileWriter::WriteSolutionsToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
 {
-	openStream(filePath);
+	if (!openStream(filePath))
+	{
+		return openFail;
+	}
 	stream << puzzles.size() << "\n";
 	for (unsigned int i = 0; i < puzzles.size() - 1; i++)
 	{
@@ -34,11 +41,13 @@ void FileWriter::WriteSolutionsToFile(const std::string filePath, std::deque<Puz
 	stream << "reverse row " << puzzles[puzzles.size() - 1].GetSolution().reversedRows << "\n";
 	stream << "reverse column " << puzzles[puzzles.size() - 1].GetSolution().reversedColumns;
 	closeStream();
+	return success;
 }
 
-void FileWriter::openStream(const std::string filePath)
+bool FileWriter::openStream(const std::string filePath)
 {
 	stream.open(filePath, std::ios::out | std::ios::trunc);
+	return !stream.fail();
 }
 
 void FileWriter::closeStream()

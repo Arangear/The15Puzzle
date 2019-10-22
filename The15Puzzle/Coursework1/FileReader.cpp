@@ -1,13 +1,14 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 21.10.2019
+//Last modified: 22.10.2019
 #include "FileReader.h"
 #include <string>
 #include <limits>
 
-void FileReader::openStream(const std::string filePath)
+bool FileReader::openStream(const std::string filePath)
 {
 	stream.open(filePath, std::ios::in);
+	return !stream.fail();
 }
 
 void FileReader::closeStream()
@@ -37,9 +38,7 @@ result FileReader::loadPuzzles(const int count, std::deque<Puzzle>& puzzles)
 
 result FileReader::LoadPuzzles(const std::string filePath, std::deque<Puzzle>& puzzles)
 {
-	openStream(filePath);
-
-	if (stream.fail())
+	if (!openStream(filePath))
 	{
 		return openFail;
 	}

@@ -39,4 +39,5 @@ private:
 	int ensureValidInput(std::set<int>& values, int count);
 	void inputError(std::string message);
 	std::string getFilePath(std::string message);
+	void openFile(result result, std::string filePath, std::string message);
 };
