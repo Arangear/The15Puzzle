@@ -4,9 +4,13 @@
 #include "PuzzleGenerator.h"
 #include <random>
 
-PuzzleGenerator::PuzzleGenerator(const int size) : seed(0)
+PuzzleGenerator::PuzzleGenerator(): seed(0), size(4)
 {
-	Resize(size);
+	values = new int[size * (size + 1)];
+	for (int i = 0; i < size * (size + 1); i++)
+	{
+		values[i] = i + 1;
+	}
 }
 
 PuzzleGenerator::~PuzzleGenerator()

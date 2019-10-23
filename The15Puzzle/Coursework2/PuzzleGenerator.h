@@ -13,7 +13,7 @@ class PuzzleGenerator
 public:
 	//Constructor
 
-	PuzzleGenerator(const int size);
+	PuzzleGenerator();
 	~PuzzleGenerator();
 
 	//Methods
