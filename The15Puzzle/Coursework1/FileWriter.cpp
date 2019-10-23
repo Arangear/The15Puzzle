@@ -1,9 +1,9 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 20.10.2019
+//Last modified: 23.10.2019
 #include "FileWriter.h"
 
-void FileWriter::WritePuzzlesToFile(const std::string& filePath, std::deque<Puzzle>& puzzles)
+void FileWriter::WritePuzzlesToFile(const std::string& filePath, const std::deque<Puzzle>& puzzles)
 {
 	openStream(filePath);
 	stream << puzzles.size() << "\n";
@@ -16,7 +16,7 @@ void FileWriter::WritePuzzlesToFile(const std::string& filePath, std::deque<Puzz
 	closeStream();
 }
 
-void FileWriter::WriteSolutionsToFile(const std::string & filePath, std::deque<Puzzle>& puzzles)
+void FileWriter::WriteSolutionsToFile(const std::string & filePath, const std::deque<Puzzle>& puzzles)
 {
 	openStream(filePath);
 	stream << puzzles.size() << "\n";

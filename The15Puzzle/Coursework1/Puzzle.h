@@ -18,16 +18,22 @@ struct solution
 class Puzzle
 {
 public:
+	//Constructors
+
 	Puzzle();
 	Puzzle(const int* values);
 	Puzzle(const Puzzle& puzzle);
+
 	//Data access
+
 	const int GetSize() const;
 	const solution GetSolution() const;
 	void SetSolution(const int rows, const int reversedRows, const int columns, const int reversedColumns);
 	const int& operator()(const int x, const int y) const;
 	int& operator()(const int x, const int y);
-	//IO
+
+	//Operators
+
 	friend std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle);
 	friend std::istream& operator>>(std::istream& iStream, Puzzle& puzzle);
 private:
