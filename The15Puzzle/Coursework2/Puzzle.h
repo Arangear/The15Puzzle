@@ -1,5 +1,5 @@
 //Author:        Daniel Cieslowski
-//Date created:  16.10.2019
+//Date created:  23.10.2019
 //Last modified: 23.10.2019
 #pragma once
 
@@ -19,13 +19,14 @@ class Puzzle
 public:
 	//Constructors
 
-	Puzzle();
-	Puzzle(const int* values);
+	Puzzle(const int size);
+	Puzzle(const int size, const int* values);
 	Puzzle(const Puzzle& puzzle);
+	~Puzzle();
 
 	//Methods
 
-	//Returns if the puzzle has been solved already or not.
+	//Returns whether the puzzle has already been solved or not.
 	const bool IsSolved() const;
 	//Marks the puzzle as solved.
 	void Solve();
@@ -37,7 +38,7 @@ public:
 	const solution GetSolution() const;
 	//Sets solution of the puzzle to the values indicated by arguments.
 	void SetSolution(const int rows, const int reversedRows, const int columns, const int reversedColumns);
-	
+
 	//Operators
 
 	//Allows constant value access to puzzle state as if state was a 2-dimensional array.
@@ -51,9 +52,9 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle);
 private:
-	static const int size = 4;
-	static const int elementCount = size * size - 1;
-	int state[elementCount];
+	const int size;
+	const int elementCount;
+	int* state;
 	solution solution;
 	bool solved = false;
 };
