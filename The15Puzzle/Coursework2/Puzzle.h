@@ -28,8 +28,16 @@ public:
 
 	//Returns whether the puzzle has already been solved or not.
 	const bool IsSolved() const;
+	//Returns whether the puzzle has already been solved for partial solutions or not.
+	const bool IsPartiallySolved() const;
+	//Returns whether the puzzle has already been solved for partial solutions in all valid combinations or not.
+	const bool IsPartiallySolvedAllTurns() const;
 	//Marks the puzzle as solved.
 	void Solve();
+	//Marks the puzzle as solved in regard to partial solutions in this configuration of the puzzle.
+	void SolvePartially();
+	//Marks the puzzle as solved in regard to partial solutions in all reachable configurations of the puzzle.
+	void SolveAllTurnsPartially();
 	//Returns the size of the puzzle.
 	const int Size() const;
 	//Returns the number of tiles in the puzzle.
@@ -38,6 +46,8 @@ public:
 	const solution GetSolution() const;
 	//Sets solution of the puzzle to the values indicated by arguments.
 	void SetSolution(const int rows, const int reversedRows, const int columns, const int reversedColumns);
+	//Returns the total number of requested partial solutions if it has been calculated.
+	int GetPartialSolution(bool allTurns, int partialNumber);
 
 	//Operators
 
@@ -56,5 +66,9 @@ private:
 	int elementCount;
 	int* state;
 	solution solution;
+	int* partialSolutions;
+	int* partialSolutionsAllTurns;
 	bool solved = false;
+	bool solvedPartial = false;
+	bool solvedPartialAllTurns = false;
 };

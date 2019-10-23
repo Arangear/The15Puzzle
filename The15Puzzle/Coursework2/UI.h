@@ -35,8 +35,10 @@ private:
 	void loadPuzzles();
 	bool askYesOrNo(const std::string message);
 	bool emulateTurns();
+	bool solveSingleState();
 	bool findPartials();
 	void solvePuzzles();
+	void findSolution(const bool turnsOn, const bool current, Puzzle& puzzle);
 	void clearPuzzles();
 	void printSolutionsToConsole();
 	void printSolutionsToFile();

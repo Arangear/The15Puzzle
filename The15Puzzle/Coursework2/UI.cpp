@@ -149,6 +149,7 @@ void UI::generatePuzzles()
 		{
 			puzzleGenerator.Generate(count, puzzles);
 			allPuzzlesSolved = false;
+			std::cout << "\n";
 			return;
 		}
 	}
@@ -219,7 +220,12 @@ bool UI::askYesOrNo(const std::string message)
 
 bool UI::emulateTurns()
 {
-	return askYesOrNo("Do you want to look for solutions in all puzzle states achievable using valid turns [Y/N]? ");
+	return askYesOrNo("Do you want to look for partial solutions in all puzzle states achievable using valid turns [Y/N]? ");
+}
+
+bool UI::solveSingleState()
+{
+	return askYesOrNo("Do you want to look for partial solutions without emulating turns [Y/N]? ");
 }
 
 bool UI::findPartials()
@@ -229,19 +235,44 @@ bool UI::findPartials()
 
 void UI::solvePuzzles()
 {
-	bool turnsOn = emulateTurns();
 	bool partialsOn = findPartials();
+	bool turnsOn = false;
+	bool current = false;
+
+	if (partialsOn)
+	{
+		turnsOn = emulateTurns();
+		current = solveSingleState();
+	}
+
+	if (!turnsOn && !current)
+	{
+		std::cout << "No partial solutions requested to be found.\n";
+	}
 
 	for (Puzzle& puzzle : puzzles)
 	{
-		if (!puzzle.IsSolved())
-		{
-			solver.Solve(puzzle, turnsOn, partialsOn);
-		}
+		findSolution(turnsOn, current, puzzle);
 	}
 
 	std::cout << "All puzzles' solutions found.\n\n";
 	allPuzzlesSolved = true;
+}
+
+void UI::findSolution(const bool turnsOn, const bool current, Puzzle & puzzle)
+{
+	if (!puzzle.IsSolved())
+	{
+		solver.Solve(puzzle);
+	}
+	if (current && !puzzle.IsPartiallySolved())
+	{
+		solver.SolvePartialCurrent(puzzle);
+	}
+	if (turnsOn && !puzzle.IsPartiallySolvedAllTurns())
+	{
+		solver.SolvePartialAllTurns(puzzle);
+	}
 }
 
 void UI::clearPuzzles()
@@ -260,7 +291,24 @@ void UI::printSolutionsToConsole()
 		std::cout << "row " << puzzle.GetSolution().rows << "\n";
 		std::cout << "column " << puzzle.GetSolution().columns << "\n";
 		std::cout << "reverse row " << puzzle.GetSolution().reversedRows << "\n";
-		std::cout << "reverse column " << puzzle.GetSolution().reversedColumns << "\n\n";
+		std::cout << "reverse column " << puzzle.GetSolution().reversedColumns << "\n";
+		if (puzzle.IsPartiallySolved())
+		{
+			std::cout << "(total for row & column, including reverse, in this configuration)\n";
+			for (int i = 0; i < puzzle.Size() - 1; i++)
+			{
+				std::cout << i + 2 << " = " << puzzle.GetPartialSolution(false, i + 2) << "\n";
+			}
+		}
+		if (puzzle.IsPartiallySolvedAllTurns())
+		{
+			std::cout << "(total for row and column, including reverse, for all valid turns)\n";
+			for (int i = 0; i < puzzle.Size() - 1; i++)
+			{
+				std::cout << i + 2 << " = " << puzzle.GetPartialSolution(true, i + 2) << "\n";
+			}
+		}
+		std::cout << "\n";
 	}
 }
 

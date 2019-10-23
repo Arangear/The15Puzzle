@@ -6,6 +6,13 @@
 Puzzle::Puzzle(const int size) : size(size), elementCount(size * size - 1)
 {
 	state = new int[elementCount];
+	partialSolutions = new int[size - 1];
+	partialSolutionsAllTurns = new int[size - 1];
+	for (int i = 0; i < size - 1; i++)
+	{
+		partialSolutions[i] = 0;
+		partialSolutionsAllTurns[i] = 0;
+	}
 }
 
 Puzzle::Puzzle(const int size, const int* values) : Puzzle(size)
@@ -27,6 +34,8 @@ Puzzle::Puzzle(const Puzzle& puzzle) : Puzzle(puzzle.Size())
 Puzzle::~Puzzle()
 {
 	delete[] state;
+	delete[] partialSolutions;
+	delete[] partialSolutionsAllTurns;
 }
 
 const bool Puzzle::IsSolved() const
@@ -34,9 +43,29 @@ const bool Puzzle::IsSolved() const
 	return solved;
 }
 
+const bool Puzzle::IsPartiallySolved() const
+{
+	return solvedPartial;
+}
+
+const bool Puzzle::IsPartiallySolvedAllTurns() const
+{
+	return solvedPartialAllTurns;
+}
+
 void Puzzle::Solve()
 {
 	solved = true;
+}
+
+void Puzzle::SolvePartially()
+{
+	solvedPartial = true;
+}
+
+void Puzzle::SolveAllTurnsPartially()
+{
+	solvedPartialAllTurns = true;
 }
 
 const int Puzzle::Size() const
@@ -57,6 +86,11 @@ const solution Puzzle::GetSolution() const
 void Puzzle::SetSolution(const int rows, const int reversedRows, const int columns, const int reversedColumns)
 {
 	solution = { rows, reversedRows, columns, reversedColumns };
+}
+
+int Puzzle::GetPartialSolution(bool allTurns, int partialNumber)
+{
+	return allTurns ? partialSolutionsAllTurns[partialNumber - 2] : partialSolutions[partialNumber - 2];
 }
 
 const int& Puzzle::operator()(const int x, const int y) const
