@@ -1,8 +1,8 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 21.10.2019
-
+//Last modified: 23.10.2019
 #pragma once
+
 #include <iostream>
 
 struct solution
