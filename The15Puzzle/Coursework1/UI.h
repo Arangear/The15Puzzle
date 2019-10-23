@@ -36,8 +36,8 @@ private:
 	void printSolutionsToConsole();
 	void printSolutionsToFile();
 
-	int ensureValidInput(std::set<int>& values, int count);
-	void inputError(std::string message);
-	std::string getFilePath(std::string message);
-	void openFile(result result, std::string filePath, std::string message);
+	int ensureValidInput(std::set<int>& values, const int count);
+	void inputError(const std::string message);
+	std::string getFilePath(const std::string message);
+	void openFile(const result result, const std::string filePath, const std::string message);
 };

@@ -232,14 +232,14 @@ int UI::ensureValidInput(std::set<int>& values, int count)
 	}
 }
 
-void UI::inputError(std::string message)
+void UI::inputError(const std::string message)
 {
 	std::cerr << message;
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-std::string UI::getFilePath(std::string message)
+std::string UI::getFilePath(const std::string message)
 {
 	std::string filePath;
 
@@ -249,7 +249,7 @@ std::string UI::getFilePath(std::string message)
 	return filePath;
 }
 
-void UI::openFile(result result, std::string filePath, std::string message)
+void UI::openFile(const result result, const std::string filePath, const std::string message)
 {
 	if (result == openFail)
 	{

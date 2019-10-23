@@ -3,7 +3,7 @@
 //Last modified: 22.10.2019
 #include "FileWriter.h"
 
-result FileWriter::WritePuzzlesToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
+result FileWriter::WritePuzzlesToFile(const std::string filePath, const std::deque<Puzzle>& puzzles)
 {
 	if (!openStream(filePath))
 	{
@@ -20,7 +20,7 @@ result FileWriter::WritePuzzlesToFile(const std::string filePath, std::deque<Puz
 	return success;
 }
 
-result FileWriter::WriteSolutionsToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
+result FileWriter::WriteSolutionsToFile(const std::string filePath, const std::deque<Puzzle>& puzzles)
 {
 	if (!openStream(filePath))
 	{
