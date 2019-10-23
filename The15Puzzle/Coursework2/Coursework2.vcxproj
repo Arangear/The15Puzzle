@@ -152,12 +152,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Coursework2.cpp" />
+    <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="FileWriter.cpp" />
     <ClCompile Include="Puzzle.cpp" />
     <ClCompile Include="PuzzleGenerator.cpp" />
     <ClCompile Include="Solver.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileManager.h" />
+    <ClInclude Include="FileReader.h" />
+    <ClInclude Include="FileWriter.h" />
     <ClInclude Include="Puzzle.h" />
     <ClInclude Include="PuzzleGenerator.h" />
     <ClInclude Include="Solver.h" />

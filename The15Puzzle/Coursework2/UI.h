@@ -5,6 +5,8 @@
 
 #include "Solver.h"
 #include "PuzzleGenerator.h"
+#include "FileReader.h"
+#include "FileWriter.h"
 #include <set>
 
 //Class responsible for communication between users and the application.
@@ -19,6 +21,8 @@ private:
 	int problemSize = 4;
 	bool allPuzzlesSolved = false;
 	PuzzleGenerator puzzleGenerator;
+	FileWriter fileWriter;
+	FileReader fileReader;
 	Solver solver;
 	std::deque<Puzzle> puzzles;
 
@@ -27,14 +31,15 @@ private:
 	void inputPuzzle();
 	void generatePuzzles();
 	void printPuzzles();
-	//void savePuzzles();
-	//void loadPuzzles();
+	void savePuzzles();
+	void loadPuzzles();
 	void solvePuzzles();
 	void clearPuzzles();
 	void printSolutionsToConsole();
-	//void printSolutionsToFile();
+	void printSolutionsToFile();
 
 	int ensureValidInput(std::set<int>& values, const int count, const int upper);
 	void inputError(const std::string message);
-	//std::string getFilePath(const std::string message);
+	std::string getFilePath(const std::string message);
+	void openFile(const result result, const std::string filePath, const std::string message);
 };

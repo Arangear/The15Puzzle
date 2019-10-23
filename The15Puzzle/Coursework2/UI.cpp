@@ -38,10 +38,10 @@ void UI::Display()
 			printPuzzles();
 			break;
 		case 5:
-			//savePuzzles();
+			savePuzzles();
 			break;
 		case 6:
-			//loadPuzzles();
+			loadPuzzles();
 			break;
 		case 7:
 			solvePuzzles();
@@ -58,7 +58,7 @@ void UI::Display()
 		case 10:
 			if (allPuzzlesSolved)
 			{
-				//printSolutionsToFile();
+				printSolutionsToFile();
 				break;
 			}
 		default:
@@ -167,6 +167,35 @@ void UI::printPuzzles()
 	}
 }
 
+void UI::savePuzzles()
+{
+	std::string filePath = getFilePath("Provide a path to the file you wish to save the puzzles to: ");
+	openFile(fileWriter.WritePuzzlesToFile(filePath, puzzles), filePath, "All puzzles saved to ");
+}
+
+void UI::loadPuzzles()
+{
+	int initialCount = puzzles.size();
+	std::string filePath = getFilePath("Provide a path to the file you wish to load the puzzles from: ");
+
+	switch (fileReader.LoadPuzzles(filePath, problemSize, puzzles))
+	{
+	case success:
+		std::cout << "Loaded in " << puzzles.size() - initialCount << " puzzles.\n\n";
+		break;
+	case readFail:
+		std::cerr << "Data format in file incorrect.\n";
+		std::cout << "Managed to load in " << puzzles.size() - initialCount << " puzzles.\n\n";
+		break;
+	case openFail:
+		std::cerr << "Failed to open file " << filePath << "\n";
+	}
+	if (puzzles.size() - initialCount != 0)
+	{
+		allPuzzlesSolved = false;
+	}
+}
+
 void UI::solvePuzzles()
 {
 	for (Puzzle& puzzle : puzzles)
@@ -198,6 +227,12 @@ void UI::printSolutionsToConsole()
 		std::cout << "reverse row " << puzzle.GetSolution().reversedRows << "\n";
 		std::cout << "reverse column " << puzzle.GetSolution().reversedColumns << "\n\n";
 	}
+}
+
+void UI::printSolutionsToFile()
+{
+	std::string filePath = getFilePath("Provide a path to the file you wish to save all the solutions to: ");
+	openFile(fileWriter.WriteSolutionsToFile(filePath, puzzles), filePath, "All solutions saved to ");
 }
 
 int UI::ensureValidInput(std::set<int>& values, const int count, const int upper)
@@ -235,4 +270,26 @@ void UI::inputError(const std::string message)
 	std::cerr << message;
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+std::string UI::getFilePath(const std::string message)
+{
+	std::string filePath;
+
+	std::cout << message;
+	std::cin >> filePath;
+
+	return filePath;
+}
+
+void UI::openFile(const result result, const std::string filePath, const std::string message)
+{
+	if (result == openFail)
+	{
+		std::cout << "Couldn't open file " << filePath << ".\n\n";
+	}
+	else
+	{
+		std::cout << message << filePath << ".\n\n";
+	}
 }
