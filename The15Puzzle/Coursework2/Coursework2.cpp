@@ -2,21 +2,18 @@
 //Date created:  23.10.2019
 //Last modified: 23.10.2019
 #include "PuzzleGenerator.h"
+#include "Solver.h"
 
 int main()
 {
 	//UI ui;
 	//ui.Display();
 
+	Solver s;
 	PuzzleGenerator pg(4);
-
-	std::cout << pg.Next() << "\n\n";
-	pg.Resize(5);
-	std::cout << pg.Next() << "\n\n";
-	pg.Resize(6);
-	std::cout << pg.Next() << "\n\n";
-	pg.Resize(2);
-	std::cout << pg.Next() << "\n\n";
+	Puzzle p = pg.Next();
+	std::cout << p << "\n\n";
+	s.Solve(p);
 
 	return 0;
 }

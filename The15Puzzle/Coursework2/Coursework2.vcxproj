@@ -154,10 +154,12 @@
     <ClCompile Include="Coursework2.cpp" />
     <ClCompile Include="Puzzle.cpp" />
     <ClCompile Include="PuzzleGenerator.cpp" />
+    <ClCompile Include="Solver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Puzzle.h" />
     <ClInclude Include="PuzzleGenerator.h" />
+    <ClInclude Include="Solver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
