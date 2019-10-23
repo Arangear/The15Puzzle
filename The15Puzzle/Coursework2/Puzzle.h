@@ -52,8 +52,8 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle);
 private:
-	const int size;
-	const int elementCount;
+	int size;
+	int elementCount;
 	int* state;
 	solution solution;
 	bool solved = false;
