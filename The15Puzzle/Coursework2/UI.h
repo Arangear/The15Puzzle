@@ -33,6 +33,9 @@ private:
 	void printPuzzles();
 	void savePuzzles();
 	void loadPuzzles();
+	bool askYesOrNo(const std::string message);
+	bool emulateTurns();
+	bool findPartials();
 	void solvePuzzles();
 	void clearPuzzles();
 	void printSolutionsToConsole();

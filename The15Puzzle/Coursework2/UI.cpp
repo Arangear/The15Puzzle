@@ -78,7 +78,7 @@ void UI::displayOptions()
 	std::cout << "[4] Print puzzles from memory\n";
 	std::cout << "[5] Save puzzles from memory to file\n";
 	std::cout << "[6] Load puzzles from file to memory\n";
-	std::cout << "[7] Solve all puzzles in memory\n";
+	std::cout << "[7] Find solutions to all puzzles in memory\n";
 	std::cout << "[8] Remove all puzzles from memory\n";
 	if (allPuzzlesSolved)
 	{
@@ -196,15 +196,50 @@ void UI::loadPuzzles()
 	}
 }
 
+bool UI::askYesOrNo(const std::string message)
+{
+	while (true)
+	{
+		char choice;
+		std::cout << message;
+		std::cin >> choice;
+		switch (choice)
+		{
+		case 'y':
+		case 'Y':
+			return true;
+		case 'n':
+		case 'N':
+			return false;
+		default:
+			inputError("Unrecognised command.\n");
+		}
+	}
+}
+
+bool UI::emulateTurns()
+{
+	return askYesOrNo("Do you want to look for solutions in all puzzle states achievable using valid turns [Y/N]? ");
+}
+
+bool UI::findPartials()
+{
+	return askYesOrNo("Do you want to look for partial solutions [Y/N]? ");
+}
+
 void UI::solvePuzzles()
 {
+	bool turnsOn = emulateTurns();
+	bool partialsOn = findPartials();
+
 	for (Puzzle& puzzle : puzzles)
 	{
 		if (!puzzle.IsSolved())
 		{
-			solver.Solve(puzzle);
+			solver.Solve(puzzle, turnsOn, partialsOn);
 		}
 	}
+
 	std::cout << "All puzzles' solutions found.\n\n";
 	allPuzzlesSolved = true;
 }

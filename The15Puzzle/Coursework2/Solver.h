@@ -11,6 +11,6 @@ public:
 	//Methods
 
 	//Finds the solution to puzzle.
-	void Solve(Puzzle& puzzle);
+	void Solve(Puzzle& puzzle, const bool emulateTurns, const bool findPartials);
 private:
 };
