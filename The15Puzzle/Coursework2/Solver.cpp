@@ -1,12 +1,9 @@
 //Author:        Daniel Cieslowski
 //Date created:  23.10.2019
 //Last modified: 23.10.2019
-#include "UI.h"
+#include "Solver.h"
 
-int main()
+void Solver::Solve(Puzzle& puzzle)
 {
-	UI ui;
-	ui.Display();
-
-	return 0;
+	puzzle.Solve();
 }
