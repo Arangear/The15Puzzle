@@ -33,7 +33,7 @@ result FileReader::loadPuzzles(const int count, const int size, std::deque<Puzzl
 				return readFail;
 			}
 			values.insert(puzzle(j));
-			if (values.size() != count + 1)
+			if (values.size() != j + 1)
 			{
 				stream.clear();
 				return readFail;
