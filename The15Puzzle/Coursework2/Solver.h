@@ -16,8 +16,18 @@ public:
 	//Finds partial solutions to all the configurations of the puzzle reachable using valid turns.
 	void SolvePartialAllTurns(Puzzle& puzzle);
 private:
-	//Returns the number of consecutive sets.
-	const int findConsecutiveSets(const Puzzle& puzzle);
+	//Returns the number of consecutive sets of a given size.
+	const int findConsecutiveSets(const Puzzle& puzzle, const int size);
 	//Calculates the factorial of value and returns it.
-	const unsigned long long int factorial(const int value);
+	const cpp_int factorial(const int value);
+	//Counts specified partials in the given configuration
+	void countPartials(Puzzle& puzzle, const int partialNumber);
+	//Returns whether there is a partial continuous row in the puzzle starting in position (x,y)
+	bool isContinuousRow(Puzzle& puzzle, const int x, const int y, const int partialNumber);
+	//Returns whether there is a partial continuous reversed row in the puzzle starting in position (x,y)
+	bool isContinuousReversedRow(Puzzle& puzzle, const int x, const int y, const int partialNumber);
+	//Returns whether there is a partial continuous column in the puzzle starting in position (x,y)
+	bool isContinuousColumn(Puzzle& puzzle, const int x, const int y, const int partialNumber);
+	//Returns whether there is a partial continuous reversed column in the puzzle starting in position (x,y)
+	bool isContinuousReversedColumn(Puzzle& puzzle, const int x, const int y, const int partialNumber);
 };

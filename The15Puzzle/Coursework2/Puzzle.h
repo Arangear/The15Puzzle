@@ -3,14 +3,17 @@
 //Last modified: 24.10.2019
 #pragma once
 #include <iostream>
+#include <boost/multiprecision/cpp_int.hpp>
+
+using boost::multiprecision::cpp_int;
 
 //Struct holding the solution to the puzzle data.
 struct solution
 {
-	int rows = 0;
-	int reversedRows = 0;
-	int columns = 0;
-	int reversedColumns = 0;
+	cpp_int rows = 0;
+	cpp_int reversedRows = 0;
+	cpp_int columns = 0;
+	cpp_int reversedColumns = 0;
 };
 
 //Class representing a 15-puzzle problem.
@@ -45,9 +48,9 @@ public:
 	//Returns solution to the puzzle.
 	const solution GetSolution() const;
 	//Sets solution of the puzzle to the values indicated by arguments.
-	void SetSolution(const int rows, const int reversedRows, const int columns, const int reversedColumns);
+	void SetSolution(const cpp_int rows, const cpp_int reversedRows, const cpp_int columns, const cpp_int reversedColumns);
 	//Returns the total number of requested partial solutions if it has been calculated.
-	int GetPartialSolution(bool allTurns, int partialNumber);
+	cpp_int& GetPartialSolution(bool allTurns, int partialNumber);
 
 	//Operators
 
@@ -71,9 +74,9 @@ private:
 	//Number of solutions.
 	solution solution;
 	//Array of all partial solutions for this configuration.
-	int* partialSolutions;
+	cpp_int* partialSolutions;
 	//Array of all partial solutions for all turns.
-	int* partialSolutionsAllTurns;
+	cpp_int* partialSolutionsAllTurns;
 	//Indicates whether the puzzle has been solved already.
 	bool solved = false;
 	//Indicates whether the puzzle has been solved partially already.

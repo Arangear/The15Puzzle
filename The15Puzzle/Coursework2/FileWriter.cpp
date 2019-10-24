@@ -20,7 +20,7 @@ result FileWriter::WritePuzzlesToFile(const std::string filePath, const std::deq
 	return success;
 }
 
-result FileWriter::WriteSolutionsToFile(const std::string filePath, const std::deque<Puzzle>& puzzles)
+result FileWriter::WriteSolutionsToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
 {
 	if (!openStream(filePath))
 	{
@@ -34,12 +34,45 @@ result FileWriter::WriteSolutionsToFile(const std::string filePath, const std::d
 		stream << "column = " << puzzles[i].GetSolution().columns << "\n";
 		stream << "reverse row = " << puzzles[i].GetSolution().reversedRows << "\n";
 		stream << "reverse column = " << puzzles[i].GetSolution().reversedColumns << "\n\n";
+		if (puzzles[i].IsPartiallySolved())
+		{
+			stream << "(total for row & column, including reverse, in this configuration)\n";
+			for (int i = 0; i < puzzles[i].Size() - 1; i++)
+			{
+				stream << i + 2 << " = " << puzzles[i].GetPartialSolution(false, i + 2) << "\n";
+			}
+		}
+		if (puzzles[i].IsPartiallySolvedAllTurns())
+		{
+			stream << "(total for row and column, including reverse, for all valid turns)\n";
+			for (int i = 0; i < puzzles[i].Size() - 1; i++)
+			{
+				stream << i + 2 << " = " << puzzles[i].GetPartialSolution(true, i + 2) << "\n";
+			}
+		}
+		stream << "\n";
 	}
 	stream << puzzles[puzzles.size() - 1] << "\n";
 	stream << "row = " << puzzles[puzzles.size() - 1].GetSolution().rows << "\n";
 	stream << "column = " << puzzles[puzzles.size() - 1].GetSolution().columns << "\n";
 	stream << "reverse row = " << puzzles[puzzles.size() - 1].GetSolution().reversedRows << "\n";
 	stream << "reverse column = " << puzzles[puzzles.size() - 1].GetSolution().reversedColumns;
+	if (puzzles[puzzles.size() - 1].IsPartiallySolved())
+	{
+		stream << "(total for row & column, including reverse, in this configuration)\n";
+		for (int i = 0; i < puzzles[puzzles.size() - 1].Size() - 1; i++)
+		{
+			stream << i + 2 << " = " << puzzles[puzzles.size() - 1].GetPartialSolution(false, i + 2) << "\n";
+		}
+	}
+	if (puzzles[puzzles.size() - 1].IsPartiallySolvedAllTurns())
+	{
+		stream << "(total for row and column, including reverse, for all valid turns)\n";
+		for (int i = 0; i < puzzles[puzzles.size() - 1].Size() - 1; i++)
+		{
+			stream << i + 2 << " = " << puzzles[puzzles.size() - 1].GetPartialSolution(true, i + 2) << "\n";
+		}
+	}
 	closeStream();
 	return success;
 }

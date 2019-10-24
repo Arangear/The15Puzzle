@@ -6,8 +6,8 @@
 Puzzle::Puzzle(const int size) : size(size), elementCount(size * size - 1)
 {
 	state = new int[elementCount];
-	partialSolutions = new int[size - 1];
-	partialSolutionsAllTurns = new int[size - 1];
+	partialSolutions = new cpp_int[size - 1];
+	partialSolutionsAllTurns = new cpp_int[size - 1];
 	for (int i = 0; i < size - 1; i++)
 	{
 		partialSolutions[i] = 0;
@@ -83,12 +83,12 @@ const solution Puzzle::GetSolution() const
 	return solution;
 }
 
-void Puzzle::SetSolution(const int rows, const int reversedRows, const int columns, const int reversedColumns)
+void Puzzle::SetSolution(const cpp_int rows, const cpp_int reversedRows, const cpp_int columns, const cpp_int reversedColumns)
 {
 	solution = { rows, reversedRows, columns, reversedColumns };
 }
 
-int Puzzle::GetPartialSolution(bool allTurns, int partialNumber)
+cpp_int& Puzzle::GetPartialSolution(bool allTurns, int partialNumber)
 {
 	return allTurns ? partialSolutionsAllTurns[partialNumber - 2] : partialSolutions[partialNumber - 2];
 }

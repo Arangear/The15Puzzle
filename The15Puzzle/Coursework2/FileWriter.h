@@ -19,7 +19,7 @@ public:
 	result WritePuzzlesToFile(const std::string filePath, const std::deque<Puzzle>& puzzles);
 	//Writes solutions from puzzles deque into file indicated by filePath.
 	//Returns enum indicating if the operation was successful or if an error occurred.
-	result WriteSolutionsToFile(const std::string filePath, const std::deque<Puzzle>& puzzles);
+	result WriteSolutionsToFile(const std::string filePath, std::deque<Puzzle>& puzzles);
 
 	//Operators
 
