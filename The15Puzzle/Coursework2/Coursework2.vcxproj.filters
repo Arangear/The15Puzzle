@@ -14,26 +14,26 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Header Files\File Management">
-      <UniqueIdentifier>{c7fd67f4-aa89-4cef-8ef3-10b80e1479fc}</UniqueIdentifier>
+      <UniqueIdentifier>{3d6fb467-d470-4ee2-8afa-d5f8b417ee0d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\File Management">
-      <UniqueIdentifier>{b023e784-7795-4e24-816f-658681677786}</UniqueIdentifier>
+      <UniqueIdentifier>{c8b747b9-eaae-40b7-bfb8-4685803c57f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Coursework1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Puzzle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI.cpp">
+    <ClCompile Include="Coursework2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PuzzleGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Solver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileReader.cpp">
@@ -47,13 +47,13 @@
     <ClInclude Include="Puzzle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PuzzleGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Solver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileManager.h">
@@ -65,5 +65,8 @@
     <ClInclude Include="FileWriter.h">
       <Filter>Header Files\File Management</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
