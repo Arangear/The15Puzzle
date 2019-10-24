@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
-//Date created:  16.10.2019
-//Last modified: 22.10.2019
+//Date created:  23.10.2019
+//Last modified: 23.10.2019
 #include "FileReader.h"
 #include <string>
 #include <limits>
@@ -16,9 +16,9 @@ void FileReader::closeStream()
 	stream.close();
 }
 
-result FileReader::loadPuzzles(const int count, std::deque<Puzzle>& puzzles)
+result FileReader::loadPuzzles(const int count, const int size, std::deque<Puzzle>& puzzles)
 {
-	Puzzle puzzle;
+	Puzzle puzzle(size);
 	for (int i = 0; i < count; i++)
 	{
 		for (int j = 0; j < puzzle.ElementCount(); j++)
@@ -36,7 +36,7 @@ result FileReader::loadPuzzles(const int count, std::deque<Puzzle>& puzzles)
 	return success;
 }
 
-result FileReader::LoadPuzzles(const std::string filePath, std::deque<Puzzle>& puzzles)
+result FileReader::LoadPuzzles(const std::string filePath, const int size, std::deque<Puzzle>& puzzles)
 {
 	if (!openStream(filePath))
 	{
@@ -52,7 +52,7 @@ result FileReader::LoadPuzzles(const std::string filePath, std::deque<Puzzle>& p
 		return readFail;
 	}
 
-	result result = loadPuzzles(count, puzzles);
+	result result = loadPuzzles(count, size, puzzles);
 	closeStream();
 
 	return result;

@@ -1,5 +1,5 @@
 //Author:        Daniel Cieslowski
-//Date created:  16.10.2019
+//Date created:  23.10.2019
 //Last modified: 24.10.2019
 #pragma once
 #include "FileManager.h"
@@ -13,7 +13,7 @@ class FileReader : public FileManager
 public:
 	//Method loading in puzzles to puzzles deque from file indicated by filePath.
 	//Returns enum indicating if the operation was successful or if an error occurred.
-	result LoadPuzzles(const std::string filePath, std::deque<Puzzle>& puzzles);
+	result LoadPuzzles(const std::string filePath, const int size, std::deque<Puzzle>& puzzles);
 private:
 	//Input stream
 	std::ifstream stream;
@@ -22,7 +22,7 @@ private:
 	bool openStream(const std::string filePath);
 	//Closes the open stream.
 	void closeStream();
-	//Loads count puzzles to puzzles deque.
+	//Loads count puzzles of size size to puzzles deque.
 	//Returns the result of the operation.
-	result loadPuzzles(const int count, std::deque<Puzzle>& puzzles);
+	result loadPuzzles(const int count, const int size, std::deque<Puzzle>& puzzles);
 };

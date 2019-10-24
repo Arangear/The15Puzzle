@@ -1,5 +1,5 @@
 //Author:        Daniel Cieslowski
-//Date created:  16.10.2019
+//Date created:  23.10.2019
 //Last modified: 24.10.2019
 #pragma once
 #include <fstream>
