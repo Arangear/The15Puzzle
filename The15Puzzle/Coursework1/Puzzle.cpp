@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 21.10.2019
+//Last modified: 23.10.2019
 #include "Puzzle.h"
 
 Puzzle::Puzzle()
@@ -16,7 +16,7 @@ Puzzle::Puzzle(const int* values)
 	}
 }
 
-Puzzle::Puzzle(const Puzzle & puzzle)
+Puzzle::Puzzle(const Puzzle& puzzle)
 {
 	memcpy_s(&(*this)(0, 0), elementCount * sizeof(int), &puzzle(0, 0), elementCount * sizeof(int));
 }
@@ -71,7 +71,7 @@ int& Puzzle::operator()(const int x)
 	return state[x];
 }
 
-std::ostream & operator<<(std::ostream & oStream, const Puzzle & puzzle)
+std::ostream & operator<<(std::ostream& oStream, const Puzzle& puzzle)
 {
 	for (int i = 0; i < puzzle.size - 1; i++)
 	{

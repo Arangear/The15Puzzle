@@ -1,14 +1,21 @@
 //Author:        Daniel Cieslowski
-//Date created:  16.10.2019
-//Last modified: 21.10.2019
+//Date created:  23.10.2019
+//Last modified: 23.10.2019
 #include "Puzzle.h"
 
-Puzzle::Puzzle()
+Puzzle::Puzzle(const int size) : size(size), elementCount(size * size - 1)
 {
-
+	state = new int[elementCount];
+	partialSolutions = new int[size - 1];
+	partialSolutionsAllTurns = new int[size - 1];
+	for (int i = 0; i < size - 1; i++)
+	{
+		partialSolutions[i] = 0;
+		partialSolutionsAllTurns[i] = 0;
+	}
 }
 
-Puzzle::Puzzle(const int* values)
+Puzzle::Puzzle(const int size, const int* values) : Puzzle(size)
 {
 	for (int i = 0; i < elementCount; i++)
 	{
@@ -16,9 +23,19 @@ Puzzle::Puzzle(const int* values)
 	}
 }
 
-Puzzle::Puzzle(const Puzzle & puzzle)
+Puzzle::Puzzle(const Puzzle& puzzle) : Puzzle(puzzle.Size())
 {
-	memcpy_s(&(*this)(0, 0), elementCount * sizeof(int), &puzzle(0, 0), elementCount * sizeof(int));
+	for (int i = 0; i < elementCount; i++)
+	{
+		this->state[i] = puzzle.state[i];
+	}
+}
+
+Puzzle::~Puzzle()
+{
+	delete[] state;
+	delete[] partialSolutions;
+	delete[] partialSolutionsAllTurns;
 }
 
 const bool Puzzle::IsSolved() const
@@ -26,9 +43,29 @@ const bool Puzzle::IsSolved() const
 	return solved;
 }
 
+const bool Puzzle::IsPartiallySolved() const
+{
+	return solvedPartial;
+}
+
+const bool Puzzle::IsPartiallySolvedAllTurns() const
+{
+	return solvedPartialAllTurns;
+}
+
 void Puzzle::Solve()
 {
 	solved = true;
+}
+
+void Puzzle::SolvePartially()
+{
+	solvedPartial = true;
+}
+
+void Puzzle::SolveAllTurnsPartially()
+{
+	solvedPartialAllTurns = true;
 }
 
 const int Puzzle::Size() const
@@ -51,6 +88,11 @@ void Puzzle::SetSolution(const int rows, const int reversedRows, const int colum
 	solution = { rows, reversedRows, columns, reversedColumns };
 }
 
+int Puzzle::GetPartialSolution(bool allTurns, int partialNumber)
+{
+	return allTurns ? partialSolutionsAllTurns[partialNumber - 2] : partialSolutions[partialNumber - 2];
+}
+
 const int& Puzzle::operator()(const int x, const int y) const
 {
 	return state[x * size + y];
@@ -71,7 +113,7 @@ int& Puzzle::operator()(const int x)
 	return state[x];
 }
 
-std::ostream & operator<<(std::ostream & oStream, const Puzzle & puzzle)
+std::ostream & operator<<(std::ostream& oStream, const Puzzle& puzzle)
 {
 	for (int i = 0; i < puzzle.size - 1; i++)
 	{

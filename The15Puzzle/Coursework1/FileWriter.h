@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 22.10.2019
+//Last modified: 23.10.2019
 #pragma once
 #include "FileManager.h"
 #include "Puzzle.h"
@@ -16,10 +16,10 @@ public:
 
 	//Writes puzzles from puzzles deque into file indicated by filePath.
 	//Returns enum indicating if the operation was successful or if an error occurred.
-	result WritePuzzlesToFile(const std::string filePath, std::deque<Puzzle>& puzzles);
+	result WritePuzzlesToFile(const std::string filePath, const std::deque<Puzzle>& puzzles);
 	//Writes solutions from puzzles deque into file indicated by filePath.
 	//Returns enum indicating if the operation was successful or if an error occurred.
-	result WriteSolutionsToFile(const std::string filePath, std::deque<Puzzle>& puzzles);
+	result WriteSolutionsToFile(const std::string filePath, const std::deque<Puzzle>& puzzles);
 
 	//Operators
 

@@ -1,8 +1,8 @@
 //Author:        Daniel Cieslowski
-//Date created:  16.10.2019
-//Last modified: 21.10.2019
-
+//Date created:  23.10.2019
+//Last modified: 23.10.2019
 #pragma once
+
 #include <iostream>
 
 struct solution
@@ -19,16 +19,25 @@ class Puzzle
 public:
 	//Constructors
 
-	Puzzle();
-	Puzzle(const int* values);
+	Puzzle(const int size);
+	Puzzle(const int size, const int* values);
 	Puzzle(const Puzzle& puzzle);
+	~Puzzle();
 
 	//Methods
 
-	//Returns if the puzzle has been solved already or not.
+	//Returns whether the puzzle has already been solved or not.
 	const bool IsSolved() const;
+	//Returns whether the puzzle has already been solved for partial solutions or not.
+	const bool IsPartiallySolved() const;
+	//Returns whether the puzzle has already been solved for partial solutions in all valid combinations or not.
+	const bool IsPartiallySolvedAllTurns() const;
 	//Marks the puzzle as solved.
 	void Solve();
+	//Marks the puzzle as solved in regard to partial solutions in this configuration of the puzzle.
+	void SolvePartially();
+	//Marks the puzzle as solved in regard to partial solutions in all reachable configurations of the puzzle.
+	void SolveAllTurnsPartially();
 	//Returns the size of the puzzle.
 	const int Size() const;
 	//Returns the number of tiles in the puzzle.
@@ -37,7 +46,9 @@ public:
 	const solution GetSolution() const;
 	//Sets solution of the puzzle to the values indicated by arguments.
 	void SetSolution(const int rows, const int reversedRows, const int columns, const int reversedColumns);
-	
+	//Returns the total number of requested partial solutions if it has been calculated.
+	int GetPartialSolution(bool allTurns, int partialNumber);
+
 	//Operators
 
 	//Allows constant value access to puzzle state as if state was a 2-dimensional array.
@@ -51,9 +62,13 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle);
 private:
-	static const int size = 4;
-	static const int elementCount = size * size - 1;
-	int state[elementCount];
+	int size;
+	int elementCount;
+	int* state;
 	solution solution;
+	int* partialSolutions;
+	int* partialSolutionsAllTurns;
 	bool solved = false;
+	bool solvedPartial = false;
+	bool solvedPartialAllTurns = false;
 };

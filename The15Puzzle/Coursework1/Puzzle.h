@@ -1,8 +1,8 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 21.10.2019
-
+//Last modified: 23.10.2019
 #pragma once
+
 #include <iostream>
 
 struct solution
@@ -48,12 +48,17 @@ public:
 	const int& operator()(const int x) const;
 	//Allows access to puzzle state.
 	int& operator()(const int x);
-
+	//Allows outputing puzzle in a stream
 	friend std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle);
 private:
+	//Size of the problem
 	static const int size = 4;
+	//Number of elements in the puzzle
 	static const int elementCount = size * size - 1;
+	//State of the puzzle
 	int state[elementCount];
+	//Number of solutions
 	solution solution;
+	//Indicates whether the puzzle has been solved already
 	bool solved = false;
 };

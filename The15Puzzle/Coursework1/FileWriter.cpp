@@ -1,9 +1,9 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 22.10.2019
+//Last modified: 24.10.2019
 #include "FileWriter.h"
 
-result FileWriter::WritePuzzlesToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
+result FileWriter::WritePuzzlesToFile(const std::string filePath, const std::deque<Puzzle>& puzzles)
 {
 	if (!openStream(filePath))
 	{
@@ -20,7 +20,7 @@ result FileWriter::WritePuzzlesToFile(const std::string filePath, std::deque<Puz
 	return success;
 }
 
-result FileWriter::WriteSolutionsToFile(const std::string filePath, std::deque<Puzzle>& puzzles)
+result FileWriter::WriteSolutionsToFile(const std::string filePath, const std::deque<Puzzle>& puzzles)
 {
 	if (!openStream(filePath))
 	{
@@ -30,16 +30,16 @@ result FileWriter::WriteSolutionsToFile(const std::string filePath, std::deque<P
 	for (unsigned int i = 0; i < puzzles.size() - 1; i++)
 	{
 		stream << puzzles[i] << "\n";
-		stream << "row " << puzzles[i].GetSolution().rows << "\n";
-		stream << "column " << puzzles[i].GetSolution().columns << "\n";
-		stream << "reverse row " << puzzles[i].GetSolution().reversedRows << "\n";
-		stream << "reverse column " << puzzles[i].GetSolution().reversedColumns << "\n\n";
+		stream << "row = " << puzzles[i].GetSolution().rows << "\n";
+		stream << "column = " << puzzles[i].GetSolution().columns << "\n";
+		stream << "reverse row = " << puzzles[i].GetSolution().reversedRows << "\n";
+		stream << "reverse column = " << puzzles[i].GetSolution().reversedColumns << "\n\n";
 	}
 	stream << puzzles[puzzles.size() - 1] << "\n";
-	stream << "row " << puzzles[puzzles.size() - 1].GetSolution().rows << "\n";
-	stream << "column " << puzzles[puzzles.size() - 1].GetSolution().columns << "\n";
-	stream << "reverse row " << puzzles[puzzles.size() - 1].GetSolution().reversedRows << "\n";
-	stream << "reverse column " << puzzles[puzzles.size() - 1].GetSolution().reversedColumns;
+	stream << "row = " << puzzles[puzzles.size() - 1].GetSolution().rows << "\n";
+	stream << "column = " << puzzles[puzzles.size() - 1].GetSolution().columns << "\n";
+	stream << "reverse row = " << puzzles[puzzles.size() - 1].GetSolution().reversedRows << "\n";
+	stream << "reverse column = " << puzzles[puzzles.size() - 1].GetSolution().reversedColumns;
 	closeStream();
 	return success;
 }

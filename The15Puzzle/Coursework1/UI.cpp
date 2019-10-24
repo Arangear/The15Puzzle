@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
 //Date created:  17.10.2019
-//Last modified: 21.10.2019
+//Last modified: 24.10.2019
 #include "UI.h"
 #include <limits>
 
@@ -188,10 +188,10 @@ void UI::printSolutionsToConsole()
 	for (Puzzle& puzzle : puzzles)
 	{
 		std::cout << puzzle << "\n";
-		std::cout << "row " << puzzle.GetSolution().rows << "\n";
-		std::cout << "column " << puzzle.GetSolution().columns << "\n";
-		std::cout << "reverse row " << puzzle.GetSolution().reversedRows << "\n";
-		std::cout << "reverse column " << puzzle.GetSolution().reversedColumns << "\n\n";
+		std::cout << "row = " << puzzle.GetSolution().rows << "\n";
+		std::cout << "column = " << puzzle.GetSolution().columns << "\n";
+		std::cout << "reverse row = " << puzzle.GetSolution().reversedRows << "\n";
+		std::cout << "reverse column = " << puzzle.GetSolution().reversedColumns << "\n\n";
 	}
 }
 
@@ -201,7 +201,7 @@ void UI::printSolutionsToFile()
 	openFile(fileWriter.WriteSolutionsToFile(filePath, puzzles), filePath, "All solutions saved to ");
 }
 
-int UI::ensureValidInput(std::set<int>& values, int count)
+int UI::ensureValidInput(std::set<int>& values, const int count)
 {
 	int value;
 
@@ -224,7 +224,6 @@ int UI::ensureValidInput(std::set<int>& values, int count)
 			}
 			else
 			{
-				count++;
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				return value;
 			}
@@ -232,14 +231,14 @@ int UI::ensureValidInput(std::set<int>& values, int count)
 	}
 }
 
-void UI::inputError(std::string message)
+void UI::inputError(const std::string message)
 {
 	std::cerr << message;
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-std::string UI::getFilePath(std::string message)
+std::string UI::getFilePath(const std::string message)
 {
 	std::string filePath;
 
@@ -249,7 +248,7 @@ std::string UI::getFilePath(std::string message)
 	return filePath;
 }
 
-void UI::openFile(result result, std::string filePath, std::string message)
+void UI::openFile(const result result, const std::string filePath, const std::string message)
 {
 	if (result == openFail)
 	{

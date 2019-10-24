@@ -20,10 +20,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{D3F42218-7C3C-4D24-8CA4-0C81FE5CA0BC}</ProjectGuid>
+    <ProjectGuid>{CCAFA495-3EB8-48D5-B97B-455EDE79B055}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Coursework2</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <RootNamespace>Coursework1</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
