@@ -10,7 +10,7 @@ result FileWriter::WritePuzzlesToFile(const std::string filePath, const std::deq
 		return openFail;
 	}
 	stream << puzzles.size() << "\n";
-	for (unsigned int i = 0; i < puzzles.size() - 1; i++)
+	for (int i = 0; i < puzzles.size() - 1; i++)
 	{
 		stream << puzzles[i];
 		stream << "\n\n";
@@ -27,12 +27,13 @@ result FileWriter::WriteSolutionsToFile(const std::string filePath, std::deque<P
 		return openFail;
 	}
 	stream << puzzles.size() << "\n";
-	for (unsigned int i = 0; i < puzzles.size() - 1; i++)
+	for (int i = 0; i < puzzles.size() - 1; i++)
 	{
 		writeSolutionToFile(puzzles[i]);
 		stream << "\n";
 	}
 	writeSolutionToFile(puzzles[puzzles.size() - 1]);
+	closeStream();
 	return success;
 }
 
