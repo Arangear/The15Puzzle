@@ -21,8 +21,6 @@ public:
 	//Generates a count puzzles in a random way and adds them to puzzles deque.
 	void Generate(const int count, std::deque<Puzzle>& puzzles);
 private:
-	//Seed value for the random number generator.
-	const int seed;
 	//Array of values that can appear in a puzzle.
 	int values[20] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 };

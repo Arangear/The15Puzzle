@@ -4,7 +4,7 @@
 #include "PuzzleGenerator.h"
 #include <random>
 
-PuzzleGenerator::PuzzleGenerator(): seed(0), size(4)
+PuzzleGenerator::PuzzleGenerator(): size(4)
 {
 	values = new int[size * (size + 1)];
 	for (int i = 0; i < size * (size + 1); i++)
@@ -20,7 +20,8 @@ PuzzleGenerator::~PuzzleGenerator()
 
 Puzzle PuzzleGenerator::Next()
 {
-	std::shuffle(&values[0], &values[size * (size + 1) - 1], std::default_random_engine(seed));
+	std::random_device random;
+	std::shuffle(&values[0], &values[size * (size + 1) - 1], std::default_random_engine(random()));
 	return Puzzle(size, values);
 }
 

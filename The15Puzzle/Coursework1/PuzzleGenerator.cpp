@@ -4,14 +4,15 @@
 #include "PuzzleGenerator.h"
 #include <random>
 
-PuzzleGenerator::PuzzleGenerator() : seed(0)
+PuzzleGenerator::PuzzleGenerator()
 {
 
 }
 
 Puzzle PuzzleGenerator::Next()
 {
-	std::shuffle(&values[0], &values[19], std::default_random_engine(seed));
+	std::random_device random;
+	std::shuffle(&values[0], &values[19], std::default_random_engine(random()));
 	return Puzzle(values);
 }
 

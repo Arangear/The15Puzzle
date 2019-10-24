@@ -26,8 +26,6 @@ public:
 private:
 	//Size of the puzzle.
 	int size;
-	//Seed value for the random number generator.
-	const int seed;
 	//Array of values that can appear in a puzzle.
 	int* values;
 };
