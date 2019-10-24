@@ -13,18 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\File Management">
+      <UniqueIdentifier>{c7fd67f4-aa89-4cef-8ef3-10b80e1479fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\File Management">
+      <UniqueIdentifier>{b023e784-7795-4e24-816f-658681677786}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Coursework1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Puzzle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileWriter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI.cpp">
@@ -36,18 +36,15 @@
     <ClCompile Include="Solver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FileReader.cpp">
+      <Filter>Source Files\File Management</Filter>
+    </ClCompile>
+    <ClCompile Include="FileWriter.cpp">
+      <Filter>Source Files\File Management</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Puzzle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileReader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileWriter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI.h">
@@ -58,6 +55,15 @@
     </ClInclude>
     <ClInclude Include="Solver.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>Header Files\File Management</Filter>
+    </ClInclude>
+    <ClInclude Include="FileReader.h">
+      <Filter>Header Files\File Management</Filter>
+    </ClInclude>
+    <ClInclude Include="FileWriter.h">
+      <Filter>Header Files\File Management</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
