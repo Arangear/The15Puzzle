@@ -29,52 +29,36 @@ result FileWriter::WriteSolutionsToFile(const std::string filePath, std::deque<P
 	stream << puzzles.size() << "\n";
 	for (unsigned int i = 0; i < puzzles.size() - 1; i++)
 	{
-		stream << puzzles[i] << "\n";
-		stream << "row = " << puzzles[i].GetSolution().rows << "\n";
-		stream << "column = " << puzzles[i].GetSolution().columns << "\n";
-		stream << "reverse row = " << puzzles[i].GetSolution().reversedRows << "\n";
-		stream << "reverse column = " << puzzles[i].GetSolution().reversedColumns << "\n\n";
-		if (puzzles[i].IsPartiallySolved())
-		{
-			stream << "(total for row & column, including reverse, in this configuration)\n";
-			for (int i = 0; i < puzzles[i].Size() - 1; i++)
-			{
-				stream << i + 2 << " = " << puzzles[i].GetPartialSolution(false, i + 2) << "\n";
-			}
-		}
-		if (puzzles[i].IsPartiallySolvedAllTurns())
-		{
-			stream << "(total for row and column, including reverse, for all valid turns)\n";
-			for (int i = 0; i < puzzles[i].Size() - 1; i++)
-			{
-				stream << i + 2 << " = " << puzzles[i].GetPartialSolution(true, i + 2) << "\n";
-			}
-		}
+		writeSolutionToFile(puzzles[i]);
 		stream << "\n";
 	}
-	stream << puzzles[puzzles.size() - 1] << "\n";
-	stream << "row = " << puzzles[puzzles.size() - 1].GetSolution().rows << "\n";
-	stream << "column = " << puzzles[puzzles.size() - 1].GetSolution().columns << "\n";
-	stream << "reverse row = " << puzzles[puzzles.size() - 1].GetSolution().reversedRows << "\n";
-	stream << "reverse column = " << puzzles[puzzles.size() - 1].GetSolution().reversedColumns;
-	if (puzzles[puzzles.size() - 1].IsPartiallySolved())
+	writeSolutionToFile(puzzles[puzzles.size() - 1]);
+	return success;
+}
+
+void FileWriter::writeSolutionToFile(Puzzle& puzzle)
+{
+	stream << puzzle << "\n";
+	stream << "row = " << puzzle.GetSolution().rows << "\n";
+	stream << "column = " << puzzle.GetSolution().columns << "\n";
+	stream << "reverse row = " << puzzle.GetSolution().reversedRows << "\n";
+	stream << "reverse column = " << puzzle.GetSolution().reversedColumns << "\n\n";
+	if (puzzle.IsPartiallySolved())
 	{
 		stream << "(total for row & column, including reverse, in this configuration)\n";
-		for (int i = 0; i < puzzles[puzzles.size() - 1].Size() - 1; i++)
+		for (int i = 0; i < puzzle.Size() - 1; i++)
 		{
-			stream << i + 2 << " = " << puzzles[puzzles.size() - 1].GetPartialSolution(false, i + 2) << "\n";
+			stream << i + 2 << " = " << puzzle.GetPartialSolution(false, i + 2) << "\n";
 		}
 	}
-	if (puzzles[puzzles.size() - 1].IsPartiallySolvedAllTurns())
+	if (puzzle.IsPartiallySolvedAllTurns())
 	{
 		stream << "(total for row and column, including reverse, for all valid turns)\n";
-		for (int i = 0; i < puzzles[puzzles.size() - 1].Size() - 1; i++)
+		for (int i = 0; i < puzzle.Size() - 1; i++)
 		{
-			stream << i + 2 << " = " << puzzles[puzzles.size() - 1].GetPartialSolution(true, i + 2) << "\n";
+			stream << i + 2 << " = " << puzzle.GetPartialSolution(true, i + 2) << "\n";
 		}
 	}
-	closeStream();
-	return success;
 }
 
 bool FileWriter::openStream(const std::string filePath)

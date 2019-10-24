@@ -29,6 +29,8 @@ public:
 private:
 	//Output stream.
 	std::ofstream stream;
+	//Writes solutions of the puzzle into stream.
+	void writeSolutionToFile(Puzzle& puzzle);
 	//Opens the stream to the file indicated by filePath.
 	//Returns whether it was successful or not.
 	bool openStream(const std::string filePath);
