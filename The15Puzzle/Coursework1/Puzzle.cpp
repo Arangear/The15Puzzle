@@ -71,7 +71,7 @@ int& Puzzle::operator()(const int x)
 	return state[x];
 }
 
-std::ostream & operator<<(std::ostream& oStream, const Puzzle& puzzle)
+std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle)
 {
 	for (int i = 0; i < puzzle.size - 1; i++)
 	{

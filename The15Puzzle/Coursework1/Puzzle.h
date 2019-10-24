@@ -1,10 +1,10 @@
 //Author:        Daniel Cieslowski
 //Date created:  16.10.2019
-//Last modified: 23.10.2019
+//Last modified: 24.10.2019
 #pragma once
-
 #include <iostream>
 
+//Struct holding the solution to the puzzle data.
 struct solution
 {
 	int rows = 0;
@@ -51,14 +51,14 @@ public:
 	//Allows outputing puzzle in a stream
 	friend std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle);
 private:
-	//Size of the problem
+	//Size of the problem.
 	static const int size = 4;
-	//Number of elements in the puzzle
+	//Number of elements in the puzzle.
 	static const int elementCount = size * size - 1;
-	//State of the puzzle
+	//State of the puzzle.
 	int state[elementCount];
-	//Number of solutions
+	//Number of solutions.
 	solution solution;
-	//Indicates whether the puzzle has been solved already
+	//Indicates whether the puzzle has been solved already.
 	bool solved = false;
 };
