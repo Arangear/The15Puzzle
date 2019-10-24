@@ -1,10 +1,10 @@
 //Author:        Daniel Cieslowski
 //Date created:  23.10.2019
-//Last modified: 23.10.2019
+//Last modified: 24.10.2019
 #pragma once
-
 #include <iostream>
 
+//Struct holding the solution to the puzzle data.
 struct solution
 {
 	int rows = 0;
@@ -59,16 +59,25 @@ public:
 	const int& operator()(const int x) const;
 	//Allows access to puzzle state.
 	int& operator()(const int x);
-
+	//Allows outputing puzzle in a stream
 	friend std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle);
 private:
+	//Size of the problem.
 	int size;
+	//Number of elements in the puzzle.
 	int elementCount;
+	//State of the puzzle.
 	int* state;
+	//Number of solutions.
 	solution solution;
+	//Array of all partial solutions for this configuration.
 	int* partialSolutions;
+	//Array of all partial solutions for all turns.
 	int* partialSolutionsAllTurns;
+	//Indicates whether the puzzle has been solved already.
 	bool solved = false;
+	//Indicates whether the puzzle has been solved partially already.
 	bool solvedPartial = false;
+	//Indicates whether the puzzle has been solved partially for all Turns already.
 	bool solvedPartialAllTurns = false;
 };

@@ -3,7 +3,6 @@
 //Last modified: 24.10.2019
 #pragma once
 #include "Puzzle.h"
-#include "FileWriter.h"
 #include <random>
 #include <deque>
 

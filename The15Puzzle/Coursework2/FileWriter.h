@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
 //Date created:  23.10.2019
-//Last modified: 23.10.2019
+//Last modified: 24.10.2019
 #pragma once
 #include "FileManager.h"
 #include "Puzzle.h"
@@ -27,8 +27,11 @@ public:
 	friend void operator<<(FileWriter& fw, const std::string message);
 	friend void operator<<(FileWriter& fw, const int number);
 private:
+	//Output stream.
 	std::ofstream stream;
-
+	//Opens the stream to the file indicated by filePath.
+	//Returns whether it was successful or not.
 	bool openStream(const std::string filePath);
+	//Closes the open stream.
 	void closeStream();
 };

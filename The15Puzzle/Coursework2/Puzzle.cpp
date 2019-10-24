@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
 //Date created:  23.10.2019
-//Last modified: 23.10.2019
+//Last modified: 24.10.2019
 #include "Puzzle.h"
 
 Puzzle::Puzzle(const int size) : size(size), elementCount(size * size - 1)
@@ -113,7 +113,7 @@ int& Puzzle::operator()(const int x)
 	return state[x];
 }
 
-std::ostream & operator<<(std::ostream& oStream, const Puzzle& puzzle)
+std::ostream& operator<<(std::ostream& oStream, const Puzzle& puzzle)
 {
 	for (int i = 0; i < puzzle.size - 1; i++)
 	{

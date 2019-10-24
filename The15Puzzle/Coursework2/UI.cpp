@@ -3,7 +3,6 @@
 //Last modified: 23.10.2019
 #include "UI.h"
 #include <limits>
-#include <string>
 
 void UI::Display()
 {
@@ -288,10 +287,10 @@ void UI::printSolutionsToConsole()
 	for (Puzzle& puzzle : puzzles)
 	{
 		std::cout << puzzle << "\n";
-		std::cout << "row " << puzzle.GetSolution().rows << "\n";
-		std::cout << "column " << puzzle.GetSolution().columns << "\n";
-		std::cout << "reverse row " << puzzle.GetSolution().reversedRows << "\n";
-		std::cout << "reverse column " << puzzle.GetSolution().reversedColumns << "\n";
+		std::cout << "row = " << puzzle.GetSolution().rows << "\n";
+		std::cout << "column = " << puzzle.GetSolution().columns << "\n";
+		std::cout << "reverse row = " << puzzle.GetSolution().reversedRows << "\n";
+		std::cout << "reverse column = " << puzzle.GetSolution().reversedColumns << "\n";
 		if (puzzle.IsPartiallySolved())
 		{
 			std::cout << "(total for row & column, including reverse, in this configuration)\n";
