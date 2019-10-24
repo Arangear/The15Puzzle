@@ -1,6 +1,6 @@
 //Author:        Daniel Cieslowski
 //Date created:  17.10.2019
-//Last modified: 23.10.2019
+//Last modified: 24.10.2019
 #include "UI.h"
 #include <limits>
 
@@ -188,10 +188,10 @@ void UI::printSolutionsToConsole()
 	for (Puzzle& puzzle : puzzles)
 	{
 		std::cout << puzzle << "\n";
-		std::cout << "row " << puzzle.GetSolution().rows << "\n";
-		std::cout << "column " << puzzle.GetSolution().columns << "\n";
-		std::cout << "reverse row " << puzzle.GetSolution().reversedRows << "\n";
-		std::cout << "reverse column " << puzzle.GetSolution().reversedColumns << "\n\n";
+		std::cout << "row = " << puzzle.GetSolution().rows << "\n";
+		std::cout << "column = " << puzzle.GetSolution().columns << "\n";
+		std::cout << "reverse row = " << puzzle.GetSolution().reversedRows << "\n";
+		std::cout << "reverse column = " << puzzle.GetSolution().reversedColumns << "\n\n";
 	}
 }
 
